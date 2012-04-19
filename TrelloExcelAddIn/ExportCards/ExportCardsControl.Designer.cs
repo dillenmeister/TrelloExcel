@@ -1,6 +1,6 @@
 ﻿namespace TrelloExcelAddIn
 {
-	partial class AddToTrelloControl
+	partial class ExportCardsControl
 	{
 		/// <summary> 
 		/// Required designer variable.
@@ -167,7 +167,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.AddCardsGroupBox);
 			this.Controls.Add(this.AuthenticationGroupBox);
-			this.Name = "AddToTrelloControl";
+			this.Name = "ExportCardsControl";
 			this.Size = new System.Drawing.Size(273, 236);
 			this.AuthenticationGroupBox.ResumeLayout(false);
 			this.AuthenticationGroupBox.PerformLayout();

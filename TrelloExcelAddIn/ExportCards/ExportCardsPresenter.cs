@@ -7,15 +7,15 @@ using TrelloNet;
 
 namespace TrelloExcelAddIn
 {
-	public class AddToTrelloPresenter
+	public class ExportCardsPresenter
 	{
-		private readonly IAddToTrelloView view;
+		private readonly IExportCardsView view;
 		private readonly IProcess process;
 		private readonly TaskScheduler taskScheduler;
 		private readonly ITrello trello;
 		private readonly ISelectedRangeToCardsTransformer transformer;
 
-		public AddToTrelloPresenter(IAddToTrelloView view, ITrello trello, ISelectedRangeToCardsTransformer transformer, IProcess process, TaskScheduler taskScheduler)
+		public ExportCardsPresenter(IExportCardsView view, ITrello trello, ISelectedRangeToCardsTransformer transformer, IProcess process, TaskScheduler taskScheduler)
 		{
 			this.view = view;
 			this.process = process;

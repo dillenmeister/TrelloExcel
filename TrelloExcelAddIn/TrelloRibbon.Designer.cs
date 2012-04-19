@@ -36,7 +36,7 @@
 		{
 			this.tab1 = this.Factory.CreateRibbonTab();
 			this.group1 = this.Factory.CreateRibbonGroup();
-			this.AddToTrelloButton = this.Factory.CreateRibbonButton();
+			this.ExportCardsButton = this.Factory.CreateRibbonButton();
 			this.tab1.SuspendLayout();
 			this.group1.SuspendLayout();
 			// 
@@ -49,15 +49,15 @@
 			// 
 			// group1
 			// 
-			this.group1.Items.Add(this.AddToTrelloButton);
+			this.group1.Items.Add(this.ExportCardsButton);
 			this.group1.Label = "Trello";
 			this.group1.Name = "group1";
 			// 
-			// AddToTrelloButton
+			// ExportCardsButton
 			// 
-			this.AddToTrelloButton.Label = "Add to Trello";
-			this.AddToTrelloButton.Name = "AddToTrelloButton";
-			this.AddToTrelloButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.AddToTrelloButton_Click);
+			this.ExportCardsButton.Label = "Export cards";
+			this.ExportCardsButton.Name = "ExportCardsButton";
+			this.ExportCardsButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.AddToTrelloButton_Click);
 			// 
 			// TrelloRibbon
 			// 
@@ -76,7 +76,7 @@
 
 		internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
 		internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
-		internal Microsoft.Office.Tools.Ribbon.RibbonButton AddToTrelloButton;
+		internal Microsoft.Office.Tools.Ribbon.RibbonButton ExportCardsButton;
 	}
 
 	partial class ThisRibbonCollection

@@ -7,7 +7,7 @@ namespace TrelloExcelAddIn
 {
 	public partial class ThisAddIn
 	{
-		public AddToTrelloPresenter Presenter { get; private set; }
+		public ExportCardsPresenter Presenter { get; private set; }
 		public CustomTaskPane TaskPane { get; private set; }
 		public Trello Trello { get; private set; }
 		public TaskScheduler TaskScheduler { get; private set; }
@@ -15,12 +15,12 @@ namespace TrelloExcelAddIn
 		private void ThisAddIn_Startup(object sender, System.EventArgs e)
 		{
 			Trello = new Trello("1ed8d91b5af35305a60e169a321ac248");
-			var addToTrelloControl = new AddToTrelloControl();
+			var addToTrelloControl = new ExportCardsControl();
 			TaskPane = CustomTaskPanes.Add(addToTrelloControl, "Add to Trello");
 			TaskPane.Width = 300;
 			TaskPane.DockPositionRestrict = MsoCTPDockPositionRestrict.msoCTPDockPositionRestrictNoHorizontal;
 			TaskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
-			Presenter = new AddToTrelloPresenter(addToTrelloControl, Trello, new SelectedRangeToCardsTransformer(), new ProcessImpl(), TaskScheduler);
+			Presenter = new ExportCardsPresenter(addToTrelloControl, Trello, new SelectedRangeToCardsTransformer(), new ProcessImpl(), TaskScheduler);
 		}
 
 		private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

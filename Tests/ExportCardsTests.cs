@@ -11,23 +11,23 @@ using List = TrelloNet.List;
 namespace Tests
 {
 	[TestFixture]
-	public class AddToTrelloPresenterTests
+	public class ExportCardsTests
 	{
-		private IAddToTrelloView view;
+		private IExportCardsView view;
 		private IProcess process;
 		private ITrello trello;
 		private ISelectedRangeToCardsTransformer transformer;
-		private AddToTrelloPresenter presenter;
+		private ExportCardsPresenter presenter;
 
 		[SetUp]
 		public void Setup()
 		{
-			view = A.Fake<IAddToTrelloView>();
+			view = A.Fake<IExportCardsView>();
 			process = A.Fake<IProcess>();
 			trello = A.Fake<ITrello>();
 			transformer = A.Fake<ISelectedRangeToCardsTransformer>();
 
-			presenter = new AddToTrelloPresenter(view, trello, transformer, process, TaskScheduler.Current);
+			presenter = new ExportCardsPresenter(view, trello, transformer, process, TaskScheduler.Current);
 		}
 
 		[TestCase("http://www.someurl.com/")]
@@ -193,12 +193,6 @@ namespace Tests
 			view.AuthorizationTokenWasChanged += Raise.WithEmpty().Now;
 
 			Assert.That(view.EnableAuthorize, Is.True);
-		}
-
-		[Test]
-		public void AddCardsWasClicked()
-		{
-			
 		}
 	}
 }

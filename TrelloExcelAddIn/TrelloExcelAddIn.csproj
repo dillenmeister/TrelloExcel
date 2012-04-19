@@ -190,16 +190,16 @@
     can be found.
   -->
   <ItemGroup>
-    <Compile Include="AddToTrello\AddToTrelloControl.cs">
+    <Compile Include="ExportCards\ExportCardsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AddToTrello\AddToTrelloControl.Designer.cs">
-      <DependentUpon>AddToTrelloControl.cs</DependentUpon>
+    <Compile Include="ExportCards\ExportCardsControl.Designer.cs">
+      <DependentUpon>ExportCardsControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="AddToTrello\AddToTrelloPresenter.cs" />
-    <Compile Include="AddToTrello\IAddToTrelloView.cs" />
-    <Compile Include="AddToTrello\ISelectedRangeToCardsTransformer.cs" />
-    <Compile Include="AddToTrello\IProcess.cs" />
+    <Compile Include="ExportCards\ExportCardsPresenter.cs" />
+    <Compile Include="ExportCards\IExportCardsView.cs" />
+    <Compile Include="ExportCards\ISelectedRangeToCardsTransformer.cs" />
+    <Compile Include="ExportCards\IProcess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -209,8 +209,8 @@
     <Compile Include="TrelloRibbon.Designer.cs">
       <DependentUpon>TrelloRibbon.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddToTrello\AddToTrelloControl.resx">
-      <DependentUpon>AddToTrelloControl.cs</DependentUpon>
+    <EmbeddedResource Include="ExportCards\ExportCardsControl.resx">
+      <DependentUpon>ExportCardsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

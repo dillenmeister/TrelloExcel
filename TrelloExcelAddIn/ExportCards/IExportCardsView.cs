@@ -4,7 +4,7 @@ using TrelloNet;
 
 namespace TrelloExcelAddIn
 {
-	public interface IAddToTrelloView
+	public interface IExportCardsView
 	{
 		event EventHandler AuthorizationUrlWasClicked;
 		event EventHandler AuthorizationTokenWasConfirmed;
