@@ -200,6 +200,7 @@
     <Compile Include="ExportCards\IExportCardsView.cs" />
     <Compile Include="ExportCards\ISelectedRangeToCardsTransformer.cs" />
     <Compile Include="ExportCards\IProcess.cs" />
+    <Compile Include="ExportCards\SelectedRangeToCardsTransformer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
