@@ -7,7 +7,7 @@ namespace TrelloExcelAddIn
 {
 	public partial class ThisAddIn
 	{
-		public Trello Trello { get; private set; }
+		public Trello Trello { get; private set; }		
 
 		public ExportCardsPresenter ExportCardsPresenter { get; private set; }
 		public AuthorizePresenter AuthorizePresenter { get; set; }
@@ -16,11 +16,12 @@ namespace TrelloExcelAddIn
 		public TaskScheduler TaskScheduler { get; private set; }
 
 		private void ThisAddIn_Startup(object sender, System.EventArgs e)
-		{
+		{						
 			Trello = new Trello("1ed8d91b5af35305a60e169a321ac248");
 
 			var exportCardsControl = new ExportCardsControl();
 			var authorizeForm = new AuthorizationDialog();
+			var messageBus = new MessageBus();
 
 			ExportCardsTaskPane = CustomTaskPanes.Add(exportCardsControl, "Add to Trello");
 			ExportCardsTaskPane.Width = 300;
@@ -28,8 +29,9 @@ namespace TrelloExcelAddIn
 
 			TaskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
 
-			ExportCardsPresenter = new ExportCardsPresenter(exportCardsControl, Trello, new SelectedRangeToCardsTransformer(), new ProcessImpl(), TaskScheduler);
-			AuthorizePresenter = new AuthorizePresenter(authorizeForm,  Trello);
+			ExportCardsPresenter = new ExportCardsPresenter(exportCardsControl, Trello, new SelectedRangeToCardsTransformer(), new ProcessImpl(), TaskScheduler, messageBus);
+			AuthorizePresenter = new AuthorizePresenter(authorizeForm, Trello, messageBus);
+			Globals.Ribbons.TrelloRibbon.SetMessageBus(messageBus);
 		}
 
 		private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

@@ -40,7 +40,7 @@ namespace TrelloExcelAddIn
 		public event AuthorizationTokenReceivedEventHandler AuthorizationTokenReceived;
 
 		public void ShowAuthorizationDialog(Uri url)
-		{
+		{			
 			Show();
 			WebBrowser.Navigate(url);
 		}

@@ -6,7 +6,7 @@ namespace TrelloExcelAddIn
 	{
 		private void TrelloRibbon_Load(object sender, RibbonUIEventArgs e)
 		{
-			
+
 		}
 
 		private void AddToTrelloButton_Click(object sender, RibbonControlEventArgs e)
@@ -17,6 +17,11 @@ namespace TrelloExcelAddIn
 		private void AuthorizeButton_Click(object sender, RibbonControlEventArgs e)
 		{
 			Globals.ThisAddIn.AuthorizePresenter.StartAuthorization();
+		}
+
+		public void SetMessageBus(IMessageBus messageBus)
+		{
+			messageBus.Subscribe<TrelloWasAuthorizedEvent>(@event => ExportCardsButton.Enabled = true);
 		}
 	}
 }

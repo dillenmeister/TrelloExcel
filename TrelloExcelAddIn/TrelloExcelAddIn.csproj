@@ -138,8 +138,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.4.5.4\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="RestSharp, Version=102.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\RestSharp.103.0.0\lib\net35-client\RestSharp.dll</HintPath>
+    <Reference Include="RestSharp, Version=103.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RestSharp.103.1.0-beta\lib\net4-client\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -150,9 +151,9 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="TrelloNet, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TrelloNet, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TrelloNet.0.5.0\lib\net40-Client\TrelloNet.dll</HintPath>
+      <HintPath>..\packages\TrelloNet.0.5.1-beta\lib\net40-Client\TrelloNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +201,7 @@
     </Compile>
     <Compile Include="Authorize\AuthorizePresenter.cs" />
     <Compile Include="Authorize\IAuthorizeView.cs" />
+    <Compile Include="ExportCards\BoardViewModel.cs" />
     <Compile Include="ExportCards\ExportCardsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -211,6 +213,8 @@
     <Compile Include="ExportCards\ISelectedRangeToCardsTransformer.cs" />
     <Compile Include="ExportCards\IProcess.cs" />
     <Compile Include="ExportCards\SelectedRangeToCardsTransformer.cs" />
+    <Compile Include="IMessageBus.cs" />
+    <Compile Include="MessageBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -220,6 +224,7 @@
     <Compile Include="TrelloRibbon.Designer.cs">
       <DependentUpon>TrelloRibbon.cs</DependentUpon>
     </Compile>
+    <Compile Include="TrelloWasAuthorizedEvent.cs" />
     <EmbeddedResource Include="Authorize\AuthorizationDialog.resx">
       <DependentUpon>AuthorizationDialog.cs</DependentUpon>
     </EmbeddedResource>

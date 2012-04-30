@@ -36,8 +36,8 @@
 		{
 			this.tab1 = this.Factory.CreateRibbonTab();
 			this.group1 = this.Factory.CreateRibbonGroup();
-			this.ExportCardsButton = this.Factory.CreateRibbonButton();
 			this.AuthorizeButton = this.Factory.CreateRibbonButton();
+			this.ExportCardsButton = this.Factory.CreateRibbonButton();
 			this.tab1.SuspendLayout();
 			this.group1.SuspendLayout();
 			// 
@@ -55,17 +55,18 @@
 			this.group1.Label = "Trello";
 			this.group1.Name = "group1";
 			// 
-			// ExportCardsButton
-			// 
-			this.ExportCardsButton.Label = "Export cards";
-			this.ExportCardsButton.Name = "ExportCardsButton";
-			this.ExportCardsButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.AddToTrelloButton_Click);
-			// 
 			// AuthorizeButton
 			// 
 			this.AuthorizeButton.Label = "Authorize";
 			this.AuthorizeButton.Name = "AuthorizeButton";
 			this.AuthorizeButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.AuthorizeButton_Click);
+			// 
+			// ExportCardsButton
+			// 
+			this.ExportCardsButton.Enabled = false;
+			this.ExportCardsButton.Label = "Export cards";
+			this.ExportCardsButton.Name = "ExportCardsButton";
+			this.ExportCardsButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.AddToTrelloButton_Click);
 			// 
 			// TrelloRibbon
 			// 

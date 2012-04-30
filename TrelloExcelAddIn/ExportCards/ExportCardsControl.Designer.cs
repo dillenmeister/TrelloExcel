@@ -35,7 +35,6 @@
 			this.ListComboBox = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.BoardComboBox = new System.Windows.Forms.ComboBox();
-			this.FetchBoardsButton = new System.Windows.Forms.Button();
 			this.AddCardsGroupBox.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -47,7 +46,7 @@
 			this.AddCardsGroupBox.Controls.Add(this.ListComboBox);
 			this.AddCardsGroupBox.Controls.Add(this.label1);
 			this.AddCardsGroupBox.Controls.Add(this.BoardComboBox);
-			this.AddCardsGroupBox.Location = new System.Drawing.Point(8, 41);
+			this.AddCardsGroupBox.Location = new System.Drawing.Point(8, 9);
 			this.AddCardsGroupBox.Name = "AddCardsGroupBox";
 			this.AddCardsGroupBox.Size = new System.Drawing.Size(256, 115);
 			this.AddCardsGroupBox.TabIndex = 11;
@@ -107,23 +106,13 @@
 			this.BoardComboBox.Size = new System.Drawing.Size(194, 21);
 			this.BoardComboBox.TabIndex = 8;
 			// 
-			// FetchBoardsButton
-			// 
-			this.FetchBoardsButton.Location = new System.Drawing.Point(179, 12);
-			this.FetchBoardsButton.Name = "FetchBoardsButton";
-			this.FetchBoardsButton.Size = new System.Drawing.Size(85, 23);
-			this.FetchBoardsButton.TabIndex = 14;
-			this.FetchBoardsButton.Text = "Fetch boards";
-			this.FetchBoardsButton.UseVisualStyleBackColor = true;
-			// 
 			// ExportCardsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.Controls.Add(this.FetchBoardsButton);
 			this.Controls.Add(this.AddCardsGroupBox);
 			this.Name = "ExportCardsControl";
-			this.Size = new System.Drawing.Size(273, 172);
+			this.Size = new System.Drawing.Size(273, 138);
 			this.AddCardsGroupBox.ResumeLayout(false);
 			this.AddCardsGroupBox.PerformLayout();
 			this.ResumeLayout(false);
@@ -139,7 +128,6 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox BoardComboBox;
 		private System.Windows.Forms.Label StatusLabel;
-		private System.Windows.Forms.Button FetchBoardsButton;
 
 	}
 }
