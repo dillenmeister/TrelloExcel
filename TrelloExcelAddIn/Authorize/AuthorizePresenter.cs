@@ -13,12 +13,15 @@ namespace TrelloExcelAddIn
 			this.authorizeView = authorizeView;
 			this.trello = trello;
 			this.messageBus = messageBus;
+			messageBus.Subscribe<TrelloWasUnauthorizedEvent>(_ => StartAuthorization());
 
 			authorizeView.AuthorizationTokenReceived += (sender, args) =>
 			{
 				trello.Authorize(args.Token);
 				authorizeView.Hide();
-				messageBus.Publish(new TrelloWasAuthorizedEvent());
+
+				trello.Async.Members.Me()
+					.ContinueWith(t => messageBus.Publish(new TrelloWasAuthorizedEvent(t.Result)));
 			};
 		}
 

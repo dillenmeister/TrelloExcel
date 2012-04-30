@@ -57,8 +57,8 @@
 			// 
 			// AuthorizeButton
 			// 
-			this.AuthorizeButton.Image = global::TrelloExcelAddIn.Properties.Resources.Annotate_Blocked_small;
-			this.AuthorizeButton.Label = "Authorize";
+			this.AuthorizeButton.Image = global::TrelloExcelAddIn.Properties.Resources._157_GetPermission_48x48_72;
+			this.AuthorizeButton.Label = "Login";
 			this.AuthorizeButton.Name = "AuthorizeButton";
 			this.AuthorizeButton.ShowImage = true;
 			this.AuthorizeButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.AuthorizeButton_Click);

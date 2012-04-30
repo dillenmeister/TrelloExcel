@@ -1,5 +1,4 @@
 ﻿using Microsoft.Office.Tools.Ribbon;
-using TrelloExcelAddIn.Properties;
 
 namespace TrelloExcelAddIn
 {
@@ -22,10 +21,18 @@ namespace TrelloExcelAddIn
 
 		public void SetMessageBus(IMessageBus messageBus)
 		{
+			messageBus.Subscribe<TrelloWasUnauthorizedEvent>(@event =>
+			{
+				ExportCardsButton.Enabled = false;
+				AuthorizeButton.Enabled = true;
+				AuthorizeButton.Label = "Login";
+			});
+
 			messageBus.Subscribe<TrelloWasAuthorizedEvent>(@event =>
 			{
 				ExportCardsButton.Enabled = true;
-				AuthorizeButton.Image = Resources._112_Tick_Green_32x32_72;
+				AuthorizeButton.Enabled = false;
+				AuthorizeButton.Label = string.Format("Logged in as {0}", @event.Member.Username);
 			});
 		}
 	}

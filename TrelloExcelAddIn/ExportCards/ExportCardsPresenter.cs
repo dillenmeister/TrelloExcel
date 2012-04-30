@@ -152,7 +152,10 @@ namespace TrelloExcelAddIn
 			view.DisplayBoards(Enumerable.Empty<BoardViewModel>());
 			view.DisplayLists(Enumerable.Empty<List>());
 
-			view.ShowErrorMessage(exception.InnerException.Message);
+			if(exception.InnerException is TrelloUnauthorizedException)			
+				messageBus.Publish(new TrelloWasUnauthorizedEvent());						
+			else
+				view.ShowErrorMessage(exception.InnerException.Message);
 		}
 	}
 }

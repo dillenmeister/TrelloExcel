@@ -67,6 +67,13 @@ namespace TrelloExcelAddIn.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap _157_GetPermission_48x48_72 {
+            get {
+                object obj = ResourceManager.GetObject("_157_GetPermission_48x48_72", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Annotate_Blocked_small {
             get {
                 object obj = ResourceManager.GetObject("Annotate_Blocked_small", resourceCulture);
