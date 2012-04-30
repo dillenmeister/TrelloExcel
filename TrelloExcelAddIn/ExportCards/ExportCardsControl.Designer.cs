@@ -28,11 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.AuthenticationGroupBox = new System.Windows.Forms.GroupBox();
-			this.AuthenticateButton = new System.Windows.Forms.Button();
-			this.label3 = new System.Windows.Forms.Label();
-			this.AuthenticationUrl = new System.Windows.Forms.LinkLabel();
-			this.TokenTextBox = new System.Windows.Forms.TextBox();
 			this.AddCardsGroupBox = new System.Windows.Forms.GroupBox();
 			this.StatusLabel = new System.Windows.Forms.Label();
 			this.AddCardsButton = new System.Windows.Forms.Button();
@@ -40,58 +35,9 @@
 			this.ListComboBox = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.BoardComboBox = new System.Windows.Forms.ComboBox();
-			this.AuthenticationGroupBox.SuspendLayout();
+			this.FetchBoardsButton = new System.Windows.Forms.Button();
 			this.AddCardsGroupBox.SuspendLayout();
 			this.SuspendLayout();
-			// 
-			// AuthenticationGroupBox
-			// 
-			this.AuthenticationGroupBox.Controls.Add(this.AuthenticateButton);
-			this.AuthenticationGroupBox.Controls.Add(this.label3);
-			this.AuthenticationGroupBox.Controls.Add(this.AuthenticationUrl);
-			this.AuthenticationGroupBox.Controls.Add(this.TokenTextBox);
-			this.AuthenticationGroupBox.Location = new System.Drawing.Point(8, 3);
-			this.AuthenticationGroupBox.Name = "AuthenticationGroupBox";
-			this.AuthenticationGroupBox.Size = new System.Drawing.Size(256, 103);
-			this.AuthenticationGroupBox.TabIndex = 10;
-			this.AuthenticationGroupBox.TabStop = false;
-			this.AuthenticationGroupBox.Text = "Authentication";
-			// 
-			// AuthenticateButton
-			// 
-			this.AuthenticateButton.Location = new System.Drawing.Point(162, 70);
-			this.AuthenticateButton.Name = "AuthenticateButton";
-			this.AuthenticateButton.Size = new System.Drawing.Size(75, 23);
-			this.AuthenticateButton.TabIndex = 13;
-			this.AuthenticateButton.Text = "Authenticate";
-			this.AuthenticateButton.UseVisualStyleBackColor = true;
-			// 
-			// label3
-			// 
-			this.label3.AutoSize = true;
-			this.label3.Location = new System.Drawing.Point(5, 47);
-			this.label3.Name = "label3";
-			this.label3.Size = new System.Drawing.Size(62, 13);
-			this.label3.TabIndex = 12;
-			this.label3.Text = "Enter token";
-			this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
-			// 
-			// AuthenticationUrl
-			// 
-			this.AuthenticationUrl.AutoSize = true;
-			this.AuthenticationUrl.Location = new System.Drawing.Point(5, 23);
-			this.AuthenticationUrl.Name = "AuthenticationUrl";
-			this.AuthenticationUrl.Size = new System.Drawing.Size(232, 13);
-			this.AuthenticationUrl.TabIndex = 11;
-			this.AuthenticationUrl.TabStop = true;
-			this.AuthenticationUrl.Text = "Click here to generate an authentication token  ";
-			// 
-			// TokenTextBox
-			// 
-			this.TokenTextBox.Location = new System.Drawing.Point(73, 44);
-			this.TokenTextBox.Name = "TokenTextBox";
-			this.TokenTextBox.Size = new System.Drawing.Size(164, 20);
-			this.TokenTextBox.TabIndex = 10;
 			// 
 			// AddCardsGroupBox
 			// 
@@ -101,7 +47,7 @@
 			this.AddCardsGroupBox.Controls.Add(this.ListComboBox);
 			this.AddCardsGroupBox.Controls.Add(this.label1);
 			this.AddCardsGroupBox.Controls.Add(this.BoardComboBox);
-			this.AddCardsGroupBox.Location = new System.Drawing.Point(8, 112);
+			this.AddCardsGroupBox.Location = new System.Drawing.Point(8, 41);
 			this.AddCardsGroupBox.Name = "AddCardsGroupBox";
 			this.AddCardsGroupBox.Size = new System.Drawing.Size(256, 115);
 			this.AddCardsGroupBox.TabIndex = 11;
@@ -118,11 +64,11 @@
 			// 
 			// AddCardsButton
 			// 
-			this.AddCardsButton.Location = new System.Drawing.Point(162, 81);
+			this.AddCardsButton.Location = new System.Drawing.Point(156, 81);
 			this.AddCardsButton.Name = "AddCardsButton";
-			this.AddCardsButton.Size = new System.Drawing.Size(75, 23);
+			this.AddCardsButton.Size = new System.Drawing.Size(81, 23);
 			this.AddCardsButton.TabIndex = 12;
-			this.AddCardsButton.Text = "Add cards";
+			this.AddCardsButton.Text = "Export cards";
 			this.AddCardsButton.UseVisualStyleBackColor = true;
 			// 
 			// label2
@@ -161,16 +107,23 @@
 			this.BoardComboBox.Size = new System.Drawing.Size(194, 21);
 			this.BoardComboBox.TabIndex = 8;
 			// 
-			// AddToTrelloControl
+			// FetchBoardsButton
+			// 
+			this.FetchBoardsButton.Location = new System.Drawing.Point(179, 12);
+			this.FetchBoardsButton.Name = "FetchBoardsButton";
+			this.FetchBoardsButton.Size = new System.Drawing.Size(85, 23);
+			this.FetchBoardsButton.TabIndex = 14;
+			this.FetchBoardsButton.Text = "Fetch boards";
+			this.FetchBoardsButton.UseVisualStyleBackColor = true;
+			// 
+			// ExportCardsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.FetchBoardsButton);
 			this.Controls.Add(this.AddCardsGroupBox);
-			this.Controls.Add(this.AuthenticationGroupBox);
 			this.Name = "ExportCardsControl";
-			this.Size = new System.Drawing.Size(273, 236);
-			this.AuthenticationGroupBox.ResumeLayout(false);
-			this.AuthenticationGroupBox.PerformLayout();
+			this.Size = new System.Drawing.Size(273, 172);
 			this.AddCardsGroupBox.ResumeLayout(false);
 			this.AddCardsGroupBox.PerformLayout();
 			this.ResumeLayout(false);
@@ -179,11 +132,6 @@
 
 		#endregion
 
-		private System.Windows.Forms.GroupBox AuthenticationGroupBox;
-		private System.Windows.Forms.Button AuthenticateButton;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.LinkLabel AuthenticationUrl;
-		private System.Windows.Forms.TextBox TokenTextBox;
 		private System.Windows.Forms.GroupBox AddCardsGroupBox;
 		private System.Windows.Forms.Button AddCardsButton;
 		private System.Windows.Forms.Label label2;
@@ -191,6 +139,7 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox BoardComboBox;
 		private System.Windows.Forms.Label StatusLabel;
+		private System.Windows.Forms.Button FetchBoardsButton;
 
 	}
 }

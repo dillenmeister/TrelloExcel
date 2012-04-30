@@ -29,16 +29,13 @@ namespace TrelloExcelAddIn
 
 		private void SetupEventHandlers()
 		{
-			view.AuthorizationUrlWasClicked += AuthorizationUrlWasClicked;
-			view.AuthorizationTokenWasConfirmed += AuthorizationTokenWasConfirmed;
 			view.BoardWasSelected += BoardWasSelected;
-			view.AuthorizationTokenWasChanged += AuthorizationTokenWasChanged;
 			view.AddCardsWasClicked += AddCardsWasClicked;
+			view.FetchBoardsWasClicked += FetchBoardWasClicked;
 		}
 
 		private void SetupInitialState()
-		{
-			view.EnableAuthorize = false;
+		{			
 			view.EnableSelectionOfBoards = false;
 			view.EnableSelectionOfLists = false;
 			view.EnableAddCards = false;
@@ -66,14 +63,8 @@ namespace TrelloExcelAddIn
 			}
 		}
 
-		private void AuthorizationTokenWasChanged(object sender, EventArgs eventArgs)
+		private void FetchBoardWasClicked(object sender, EventArgs e)
 		{
-			view.EnableAuthorize = view.AuthorizationToken.Length > 0;
-		}
-
-		private void AuthorizationTokenWasConfirmed(object sender, EventArgs e)
-		{
-			trello.Authorize(view.AuthorizationToken);
 			FetchAndDisplayBoards();
 		}
 
@@ -115,12 +106,6 @@ namespace TrelloExcelAddIn
 						HandleException(t.Exception);
 					}
 				}, taskScheduler);
-		}
-
-		private void AuthorizationUrlWasClicked(object sender, EventArgs e)
-		{
-			var url = trello.GetAuthorizationUrl("TrelloExcel", Scope.ReadWrite, Expiration.OneHour);
-			process.Start(url.ToString());
 		}
 
 		private void HandleException(AggregateException exception)

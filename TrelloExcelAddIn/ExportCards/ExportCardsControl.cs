@@ -12,23 +12,14 @@ namespace TrelloExcelAddIn
 		{
 			InitializeComponent();
 
-			AuthenticationUrl.LinkClicked += (s, a) => AuthorizationUrlWasClicked(this, null);
-			AuthenticateButton.Click += (s, a) => AuthorizationTokenWasConfirmed(this, null);
 			BoardComboBox.SelectedIndexChanged += (sender, args) => BoardWasSelected(this, null);
-			TokenTextBox.TextChanged += (sender, args) => AuthorizationTokenWasChanged(this, null);
 			AddCardsButton.Click += (sender, args) => AddCardsWasClicked(this, null);
+			FetchBoardsButton.Click += (sender, args) => FetchBoardsWasClicked(this, null);
 		}
 
-		public event EventHandler AuthorizationUrlWasClicked;
-		public event EventHandler AuthorizationTokenWasConfirmed;
-		public event EventHandler AuthorizationTokenWasChanged;
 		public event EventHandler BoardWasSelected;
 		public event EventHandler AddCardsWasClicked;
-
-		public string AuthorizationToken
-		{
-			get { return TokenTextBox.Text; }
-		}
+		public event EventHandler FetchBoardsWasClicked;
 
 		public bool EnableSelectionOfBoards
 		{
@@ -40,12 +31,6 @@ namespace TrelloExcelAddIn
 		{
 			get { return ListComboBox.Enabled; }
 			set { ListComboBox.Enabled = value; }
-		}
-
-		public bool EnableAuthorize
-		{
-			get { return AuthenticateButton.Enabled; }
-			set { AuthenticateButton.Enabled = value; }
 		}
 
 		public bool EnableAddCards

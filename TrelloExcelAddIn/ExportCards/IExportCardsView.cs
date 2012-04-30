@@ -6,16 +6,12 @@ namespace TrelloExcelAddIn
 {
 	public interface IExportCardsView
 	{
-		event EventHandler AuthorizationUrlWasClicked;
-		event EventHandler AuthorizationTokenWasConfirmed;
-		event EventHandler AuthorizationTokenWasChanged;
 		event EventHandler BoardWasSelected;
 		event EventHandler AddCardsWasClicked;
-
-		string AuthorizationToken { get; }
+		event EventHandler FetchBoardsWasClicked;
+		
 		bool EnableSelectionOfBoards { get; set; }
 		bool EnableSelectionOfLists { get; set; }
-		bool EnableAuthorize { get; set; }
 		bool EnableAddCards { get; set; }
 		IBoardId SelectedBoard { get; }
 		IListId SelectedList { get; }
