@@ -23,7 +23,7 @@ namespace TrelloExcelAddIn
 			var authorizeForm = new AuthorizationDialog();
 			var messageBus = new MessageBus();
 
-			ExportCardsTaskPane = CustomTaskPanes.Add(exportCardsControl, "Add to Trello");
+			ExportCardsTaskPane = CustomTaskPanes.Add(exportCardsControl, "Export cards to Trello");
 			ExportCardsTaskPane.Width = 300;
 			ExportCardsTaskPane.DockPositionRestrict = MsoCTPDockPositionRestrict.msoCTPDockPositionRestrictNoHorizontal;
 

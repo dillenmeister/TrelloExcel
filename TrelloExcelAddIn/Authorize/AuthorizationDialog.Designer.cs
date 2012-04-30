@@ -28,6 +28,7 @@ namespace TrelloExcelAddIn
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AuthorizationDialog));
 			this.WebBrowser = new System.Windows.Forms.WebBrowser();
 			this.SuspendLayout();
 			// 
@@ -37,17 +38,18 @@ namespace TrelloExcelAddIn
 			this.WebBrowser.Location = new System.Drawing.Point(0, 0);
 			this.WebBrowser.MinimumSize = new System.Drawing.Size(20, 20);
 			this.WebBrowser.Name = "WebBrowser";
-			this.WebBrowser.Size = new System.Drawing.Size(613, 487);
+			this.WebBrowser.Size = new System.Drawing.Size(613, 513);
 			this.WebBrowser.TabIndex = 0;
 			// 
 			// AuthorizationDialog
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(613, 487);
+			this.ClientSize = new System.Drawing.Size(613, 513);
 			this.Controls.Add(this.WebBrowser);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "AuthorizationDialog";
-			this.Text = "Authorize";
+			this.Text = "Allow TrelloExcel to use your account";
 			this.ResumeLayout(false);
 
 		}

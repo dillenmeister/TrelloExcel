@@ -34,6 +34,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrelloRibbon));
 			this.tab1 = this.Factory.CreateRibbonTab();
 			this.group1 = this.Factory.CreateRibbonGroup();
 			this.AuthorizeButton = this.Factory.CreateRibbonButton();
@@ -57,15 +58,19 @@
 			// 
 			// AuthorizeButton
 			// 
+			this.AuthorizeButton.Image = ((System.Drawing.Image)(resources.GetObject("AuthorizeButton.Image")));
 			this.AuthorizeButton.Label = "Authorize";
 			this.AuthorizeButton.Name = "AuthorizeButton";
+			this.AuthorizeButton.ShowImage = true;
 			this.AuthorizeButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.AuthorizeButton_Click);
 			// 
 			// ExportCardsButton
 			// 
 			this.ExportCardsButton.Enabled = false;
+			this.ExportCardsButton.Image = ((System.Drawing.Image)(resources.GetObject("ExportCardsButton.Image")));
 			this.ExportCardsButton.Label = "Export cards";
 			this.ExportCardsButton.Name = "ExportCardsButton";
+			this.ExportCardsButton.ShowImage = true;
 			this.ExportCardsButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.AddToTrelloButton_Click);
 			// 
 			// TrelloRibbon

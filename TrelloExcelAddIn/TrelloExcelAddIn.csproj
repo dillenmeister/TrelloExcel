@@ -265,6 +265,10 @@
     <AppDesigner Include="Properties\" />
     <None Include="TrelloExcelAddIn_TemporaryKey.pfx" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\s40.ico" />
+    <Content Include="Content\s40.png" />
+  </ItemGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- Include additional build rules for an Office application add-in. -->
