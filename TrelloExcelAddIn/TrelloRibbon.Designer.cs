@@ -34,7 +34,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TrelloRibbon));
 			this.tab1 = this.Factory.CreateRibbonTab();
 			this.group1 = this.Factory.CreateRibbonGroup();
 			this.AuthorizeButton = this.Factory.CreateRibbonButton();
@@ -58,7 +57,7 @@
 			// 
 			// AuthorizeButton
 			// 
-			this.AuthorizeButton.Image = ((System.Drawing.Image)(resources.GetObject("AuthorizeButton.Image")));
+			this.AuthorizeButton.Image = global::TrelloExcelAddIn.Properties.Resources.Annotate_Blocked_small;
 			this.AuthorizeButton.Label = "Authorize";
 			this.AuthorizeButton.Name = "AuthorizeButton";
 			this.AuthorizeButton.ShowImage = true;
@@ -67,7 +66,7 @@
 			// ExportCardsButton
 			// 
 			this.ExportCardsButton.Enabled = false;
-			this.ExportCardsButton.Image = ((System.Drawing.Image)(resources.GetObject("ExportCardsButton.Image")));
+			this.ExportCardsButton.Image = global::TrelloExcelAddIn.Properties.Resources.s40;
 			this.ExportCardsButton.Label = "Export cards";
 			this.ExportCardsButton.Name = "ExportCardsButton";
 			this.ExportCardsButton.ShowImage = true;

@@ -239,6 +239,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="TrelloRibbon.resx">
       <DependentUpon>TrelloRibbon.cs</DependentUpon>
@@ -266,8 +267,11 @@
     <None Include="TrelloExcelAddIn_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Annotate_Blocked_small.ico" />
+    <Content Include="Content\Annotate_Default.ico" />
     <Content Include="Content\s40.ico" />
     <Content Include="Content\s40.png" />
+    <None Include="Resources\112_Tick_Green_32x32_72.png" />
   </ItemGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
