@@ -151,9 +151,9 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="TrelloNet, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="TrelloNet, Version=0.5.2.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\TrelloNet.0.5.1-beta\lib\net40-Client\TrelloNet.dll</HintPath>
+      <HintPath>..\packages\TrelloNet.0.5.2-beta\lib\net40-Client\TrelloNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -254,6 +254,7 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
@@ -268,8 +269,6 @@
     <None Include="TrelloExcelAddIn_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Annotate_Blocked_small.ico" />
-    <Content Include="Content\Annotate_Default.ico" />
     <Content Include="Content\s40.ico" />
     <Content Include="Content\s40.png" />
     <None Include="Resources\157_GetPermission_48x48_72.png" />

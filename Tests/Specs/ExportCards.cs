@@ -13,7 +13,7 @@ namespace Tests.Specs
 	[Subject(typeof(ExportCardsPresenter))]
 	public class ExportCards : ExportCardsSpecs
 	{
-		public class when_fetch_board_button_is_clicked
+		public class when_trello_was_authorized
 		{
 			Establish context = () =>
 			{
@@ -29,7 +29,7 @@ namespace Tests.Specs
 
 			Because of = () =>
 			{
-				view.FetchBoardsWasClicked += Raise.WithEmpty().Now;
+				messageBus.Publish(new TrelloWasAuthorizedEvent(new Member()));
 				Thread.Sleep(30);
 			};
 
@@ -138,12 +138,14 @@ namespace Tests.Specs
 		protected static IExportCardsView view;
 		protected static ISelectedRangeToCardsTransformer transformer;
 		protected static ITrello trello = A.Fake<ITrello>();
+		protected static IMessageBus messageBus;
 
 		Establish context = () =>
 		{
 			view = A.Fake<IExportCardsView>();
 			transformer = A.Fake<ISelectedRangeToCardsTransformer>();
-			presenter = new ExportCardsPresenter(view, trello, transformer, A.Fake<IProcess>(), TaskScheduler.Current, A.Fake<IMessageBus>());
+			messageBus = new MessageBus();
+			presenter = new ExportCardsPresenter(view, trello, transformer, A.Fake<IProcess>(), TaskScheduler.Current, messageBus);
 		};
 	}
 }

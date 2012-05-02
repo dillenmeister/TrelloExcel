@@ -17,8 +17,7 @@ namespace TrelloExcelAddIn
 		}
 
 		public event EventHandler BoardWasSelected;
-		public event EventHandler ExportCardsWasClicked;
-		public event EventHandler FetchBoardsWasClicked;
+		public event EventHandler ExportCardsWasClicked;		
 
 		public bool EnableSelectionOfBoards
 		{

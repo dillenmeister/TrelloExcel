@@ -1,3 +1,4 @@
+using TrelloExcelAddIn.Properties;
 using TrelloNet;
 
 namespace TrelloExcelAddIn
@@ -18,6 +19,8 @@ namespace TrelloExcelAddIn
 			authorizeView.AuthorizationTokenReceived += (sender, args) =>
 			{
 				trello.Authorize(args.Token);
+				StoreTokenInSettings(args.Token);
+
 				authorizeView.Hide();
 
 				trello.Async.Members.Me()
@@ -29,6 +32,12 @@ namespace TrelloExcelAddIn
 		{
 			var url = trello.GetAuthorizationUrl("TrelloExcel", Scope.ReadWrite, Expiration.OneHour);
 			authorizeView.ShowAuthorizationDialog(url);
+		}
+
+		private static void StoreTokenInSettings(string token)
+		{
+			Settings.Default.Token = token;
+			Settings.Default.Save();
 		}
 	}
 }

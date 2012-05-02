@@ -7,8 +7,7 @@ namespace TrelloExcelAddIn
 	public interface IExportCardsView
 	{
 		event EventHandler BoardWasSelected;
-		event EventHandler ExportCardsWasClicked;
-		event EventHandler FetchBoardsWasClicked;
+		event EventHandler ExportCardsWasClicked;		
 		
 		bool EnableSelectionOfBoards { get; set; }
 		bool EnableSelectionOfLists { get; set; }
