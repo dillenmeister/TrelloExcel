@@ -13,8 +13,7 @@ namespace TrelloExcelAddIn
 		{
 			this.authorizeView = authorizeView;
 			this.trello = trello;
-			this.messageBus = messageBus;
-			messageBus.Subscribe<TrelloWasUnauthorizedEvent>(_ => StartAuthorization());
+			this.messageBus = messageBus;			
 
 			authorizeView.AuthorizationTokenReceived += (sender, args) =>
 			{
@@ -28,9 +27,9 @@ namespace TrelloExcelAddIn
 			};
 		}
 
-		public void StartAuthorization()
+		public void StartAuthorization(Expiration expiration)
 		{
-			var url = trello.GetAuthorizationUrl("TrelloExcel", Scope.ReadWrite, Expiration.OneHour);
+			var url = trello.GetAuthorizationUrl("TrelloExcel", Scope.ReadWrite, expiration);
 			authorizeView.ShowAuthorizationDialog(url);
 		}
 

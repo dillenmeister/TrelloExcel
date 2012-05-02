@@ -36,8 +36,13 @@
 		{
 			this.tab1 = this.Factory.CreateRibbonTab();
 			this.group1 = this.Factory.CreateRibbonGroup();
-			this.AuthorizeButton = this.Factory.CreateRibbonButton();
 			this.ExportCardsButton = this.Factory.CreateRibbonButton();
+			this.LoginSplitButton = this.Factory.CreateRibbonSplitButton();
+			this.LoginExpireOneHourButton = this.Factory.CreateRibbonButton();
+			this.LoginExpireOneDayButton = this.Factory.CreateRibbonButton();
+			this.LoginExpire30DaysButton = this.Factory.CreateRibbonButton();
+			this.LoginNeverExpireButton = this.Factory.CreateRibbonButton();
+			this.LoggedInButton = this.Factory.CreateRibbonButton();
 			this.tab1.SuspendLayout();
 			this.group1.SuspendLayout();
 			// 
@@ -50,18 +55,11 @@
 			// 
 			// group1
 			// 
-			this.group1.Items.Add(this.AuthorizeButton);
+			this.group1.Items.Add(this.LoginSplitButton);
+			this.group1.Items.Add(this.LoggedInButton);
 			this.group1.Items.Add(this.ExportCardsButton);
 			this.group1.Label = "Trello";
 			this.group1.Name = "group1";
-			// 
-			// AuthorizeButton
-			// 
-			this.AuthorizeButton.Image = global::TrelloExcelAddIn.Properties.Resources._157_GetPermission_48x48_72;
-			this.AuthorizeButton.Label = "Login";
-			this.AuthorizeButton.Name = "AuthorizeButton";
-			this.AuthorizeButton.ShowImage = true;
-			this.AuthorizeButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.AuthorizeButton_Click);
 			// 
 			// ExportCardsButton
 			// 
@@ -71,6 +69,58 @@
 			this.ExportCardsButton.Name = "ExportCardsButton";
 			this.ExportCardsButton.ShowImage = true;
 			this.ExportCardsButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.AddToTrelloButton_Click);
+			// 
+			// LoginSplitButton
+			// 
+			this.LoginSplitButton.Image = global::TrelloExcelAddIn.Properties.Resources._157_GetPermission_48x48_72;
+			this.LoginSplitButton.Items.Add(this.LoginExpireOneHourButton);
+			this.LoginSplitButton.Items.Add(this.LoginExpireOneDayButton);
+			this.LoginSplitButton.Items.Add(this.LoginExpire30DaysButton);
+			this.LoginSplitButton.Items.Add(this.LoginNeverExpireButton);
+			this.LoginSplitButton.Label = "Login";
+			this.LoginSplitButton.Name = "LoginSplitButton";
+			this.LoginSplitButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.LoginButton_Click);
+			// 
+			// LoginExpireOneHourButton
+			// 
+			this.LoginExpireOneHourButton.Label = "Expire in one hour";
+			this.LoginExpireOneHourButton.Name = "LoginExpireOneHourButton";
+			this.LoginExpireOneHourButton.ShowImage = true;
+			this.LoginExpireOneHourButton.Tag = "";
+			this.LoginExpireOneHourButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.LoginButton_Click);
+			// 
+			// LoginExpireOneDayButton
+			// 
+			this.LoginExpireOneDayButton.Label = "Expire in one day";
+			this.LoginExpireOneDayButton.Name = "LoginExpireOneDayButton";
+			this.LoginExpireOneDayButton.ShowImage = true;
+			this.LoginExpireOneDayButton.Tag = "";
+			this.LoginExpireOneDayButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.LoginButton_Click);
+			// 
+			// LoginExpire30DaysButton
+			// 
+			this.LoginExpire30DaysButton.Label = "Expire in 30 days";
+			this.LoginExpire30DaysButton.Name = "LoginExpire30DaysButton";
+			this.LoginExpire30DaysButton.ShowImage = true;
+			this.LoginExpire30DaysButton.Tag = "";
+			this.LoginExpire30DaysButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.LoginButton_Click);
+			// 
+			// LoginNeverExpireButton
+			// 
+			this.LoginNeverExpireButton.Label = "Never expire";
+			this.LoginNeverExpireButton.Name = "LoginNeverExpireButton";
+			this.LoginNeverExpireButton.ShowImage = true;
+			this.LoginNeverExpireButton.Tag = "";
+			this.LoginNeverExpireButton.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.LoginButton_Click);
+			// 
+			// LoggedInButton
+			// 
+			this.LoggedInButton.Enabled = false;
+			this.LoggedInButton.Image = global::TrelloExcelAddIn.Properties.Resources._157_GetPermission_48x48_72;
+			this.LoggedInButton.Label = "Not logged in";
+			this.LoggedInButton.Name = "LoggedInButton";
+			this.LoggedInButton.ShowImage = true;
+			this.LoggedInButton.Visible = false;
 			// 
 			// TrelloRibbon
 			// 
@@ -90,7 +140,12 @@
 		internal Microsoft.Office.Tools.Ribbon.RibbonTab tab1;
 		internal Microsoft.Office.Tools.Ribbon.RibbonGroup group1;
 		internal Microsoft.Office.Tools.Ribbon.RibbonButton ExportCardsButton;
-		internal Microsoft.Office.Tools.Ribbon.RibbonButton AuthorizeButton;
+		internal Microsoft.Office.Tools.Ribbon.RibbonSplitButton LoginSplitButton;
+		internal Microsoft.Office.Tools.Ribbon.RibbonButton LoginExpireOneHourButton;
+		internal Microsoft.Office.Tools.Ribbon.RibbonButton LoginExpireOneDayButton;
+		internal Microsoft.Office.Tools.Ribbon.RibbonButton LoginExpire30DaysButton;
+		internal Microsoft.Office.Tools.Ribbon.RibbonButton LoginNeverExpireButton;
+		internal Microsoft.Office.Tools.Ribbon.RibbonButton LoggedInButton;
 	}
 
 	partial class ThisRibbonCollection
