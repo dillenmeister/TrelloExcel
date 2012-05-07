@@ -28,13 +28,7 @@
         "Entry"
         {
         "MsmKey" = "8:_133DF7AC284075599FDF49985DFD5D41"
-        "OwnerKey" = "8:_2AD81F1DD12299C57EE2E2D9CBD18604"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_2AD81F1DD12299C57EE2E2D9CBD18604"
-        "OwnerKey" = "8:_734502AED78349219C1DDAED3B949354"
+        "OwnerKey" = "8:_EB58E9F8A5EF46E18B66BF4782091982"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -52,7 +46,7 @@
         "Entry"
         {
         "MsmKey" = "8:_44DCB4969F900A37C406AFEC1F9AA4EE"
-        "OwnerKey" = "8:_2AD81F1DD12299C57EE2E2D9CBD18604"
+        "OwnerKey" = "8:_EB58E9F8A5EF46E18B66BF4782091982"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -123,6 +117,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_EB58E9F8A5EF46E18B66BF4782091982"
+        "OwnerKey" = "8:_734502AED78349219C1DDAED3B949354"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_FFF14D868C5D53FE251705A3350D8FEC"
         "OwnerKey" = "8:_734502AED78349219C1DDAED3B949354"
         "MsmSig" = "8:_UNDEFINED"
@@ -178,7 +178,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_2AD81F1DD12299C57EE2E2D9CBD18604"
+        "OwnerKey" = "8:_EB58E9F8A5EF46E18B66BF4782091982"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -332,37 +332,6 @@
                     }
                 }
             "SourcePath" = "8:Newtonsoft.Json.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_DCEC47667B3A41CB961C320249142AAE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_2AD81F1DD12299C57EE2E2D9CBD18604"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:TrelloNet, Version=0.5.1.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_2AD81F1DD12299C57EE2E2D9CBD18604"
-                    {
-                    "Name" = "8:TrelloNet.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:TrelloNet.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_DCEC47667B3A41CB961C320249142AAE"
@@ -617,6 +586,37 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EB58E9F8A5EF46E18B66BF4782091982"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:TrelloNet, Version=0.5.2.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_EB58E9F8A5EF46E18B66BF4782091982"
+                    {
+                    "Name" = "8:TrelloNet.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:TrelloNet.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_DCEC47667B3A41CB961C320249142AAE"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_FFF14D868C5D53FE251705A3350D8FEC"
             {
             "AssemblyRegister" = "3:1"
@@ -740,15 +740,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TrelloExcel"
-        "ProductCode" = "8:{6DC789A2-A3F5-45B4-979F-213CA19A4B30}"
-        "PackageCode" = "8:{105775B8-355D-469D-A013-38FF486568BF}"
+        "ProductCode" = "8:{438EE58B-4F8B-436F-B2F7-6DA59E4059B5}"
+        "PackageCode" = "8:{381611C0-1B03-43CE-8C93-191EF8E8ECC3}"
         "UpgradeCode" = "8:{E0527355-4D35-4952-B4E7-A15047BDCFA8}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.1"
+        "ProductVersion" = "8:0.3.0"
         "Manufacturer" = "8:TrelloExcel"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
