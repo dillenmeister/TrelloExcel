@@ -211,7 +211,6 @@
     <Compile Include="ExportCards\ExportCardsPresenter.cs" />
     <Compile Include="ExportCards\IExportCardsView.cs" />
     <Compile Include="ExportCards\ISelectedRangeToCardsTransformer.cs" />
-    <Compile Include="ExportCards\IProcess.cs" />
     <Compile Include="ExportCards\SelectedRangeToCardsTransformer.cs" />
     <Compile Include="IMessageBus.cs" />
     <Compile Include="MessageBus.cs" />
