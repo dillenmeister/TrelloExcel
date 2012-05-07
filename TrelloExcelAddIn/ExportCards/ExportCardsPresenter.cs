@@ -37,6 +37,7 @@ namespace TrelloExcelAddIn
 		{
 			view.BoardWasSelected += BoardWasSelected;
 			view.ExportCardsWasClicked += ExportCardsWasClicked;
+			view.RefreshButtonWasClicked += RefreshButtonWasClicked;
 		}
 
 		private void SetupInitialState()
@@ -55,6 +56,11 @@ namespace TrelloExcelAddIn
 			addCardsTask.ContinueWith(t => view.ShowStatusMessage("All cards added!"), taskScheduler);
 		}
 
+		private void RefreshButtonWasClicked(object sender, EventArgs eventArgs)
+		{
+			FetchAndDisplayBoards();
+		}
+
 		private void ExportCards(IEnumerable<NewCard> cards)
 		{
 			var totalCount = cards.Count();
@@ -69,7 +75,7 @@ namespace TrelloExcelAddIn
 		}
 
 		private void FetchAndDisplayBoards()
-		{
+		{			
 			Task.Factory.StartNew(() =>
 			{
 				// <WTF>
@@ -107,8 +113,8 @@ namespace TrelloExcelAddIn
 			.ContinueWith(t =>
 			{
 				if (t.Exception == null)
-				{
-					view.DisplayBoards(t.Result);
+				{					
+					view.DisplayBoards(t.Result, view.SelectedBoard);					
 					view.EnableSelectionOfBoards = true;
 				}
 				else
@@ -129,8 +135,8 @@ namespace TrelloExcelAddIn
 				.ContinueWith(t =>
 				{
 					if (t.Exception == null)
-					{
-						view.DisplayLists(t.Result);
+					{						
+						view.DisplayLists(t.Result);						
 						view.EnableSelectionOfLists = true;
 						view.EnableExportCards = true;
 					}

@@ -13,11 +13,13 @@ namespace TrelloExcelAddIn
 			InitializeComponent();
 
 			BoardComboBox.SelectedIndexChanged += (sender, args) => BoardWasSelected(this, null);
-			AddCardsButton.Click += (sender, args) => ExportCardsWasClicked(this, null);			
+			AddCardsButton.Click += (sender, args) => ExportCardsWasClicked(this, null);
+			RefreshButton.Click += (sender, args) => RefreshButtonWasClicked(this, null);
 		}
 
 		public event EventHandler BoardWasSelected;
-		public event EventHandler ExportCardsWasClicked;		
+		public event EventHandler ExportCardsWasClicked;
+		public event EventHandler RefreshButtonWasClicked;		
 
 		public bool EnableSelectionOfBoards
 		{
@@ -47,10 +49,14 @@ namespace TrelloExcelAddIn
 			get { return (IListId)ListComboBox.SelectedValue; }
 		}
 
-		public void DisplayBoards(IEnumerable<BoardViewModel> boards)
+		public void DisplayBoards(IEnumerable<BoardViewModel> boards, IBoardId selectBoard = null)
 		{
 			var boardViewModels = boards.ToList();
+
+			BoardComboBox.BeginUpdate();
 			BoardComboBox.DataSource = boardViewModels;
+			SelectBoard(selectBoard);
+			BoardComboBox.EndUpdate();
 
 			if (!boardViewModels.Any())
 				BoardComboBox.Text = "";
@@ -67,6 +73,15 @@ namespace TrelloExcelAddIn
 		public void ShowStatusMessage(string text, params object[] args)
 		{
 			StatusLabel.Text = string.Format(text, args);
+		}
+
+		private void SelectBoard(IBoardId board)
+		{
+			if (board == null)
+				return;
+
+			BoardComboBox.SelectedItem = 
+				BoardComboBox.Items.Cast<IBoardId>().FirstOrDefault(item => item.GetBoardId() == board.GetBoardId());
 		}
 
 		public void ShowErrorMessage(string message)

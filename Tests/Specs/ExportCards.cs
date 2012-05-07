@@ -34,13 +34,13 @@ namespace Tests.Specs
 			};
 
 			It should_display_boards = () =>
-				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>._)).MustHaveHappened();
+				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>._, A<IBoardId>._)).MustHaveHappened();
 
 			It should_display_boards_with_correct_names = () =>
-				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.Matches(b => b.ElementAt(0).ToString() == "board 1"))).MustHaveHappened();
+				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.Matches(b => b.ElementAt(0).ToString() == "board 1"), A<IBoardId>._)).MustHaveHappened();
 
 			It should_display_boards_with_organization_name = () =>
-				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.Matches(b => b.ElementAt(1).ToString() == "board 2 (org 1)"))).MustHaveHappened();
+				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.Matches(b => b.ElementAt(1).ToString() == "board 2 (org 1)"), A<IBoardId>._)).MustHaveHappened();
 
 			static List<Board> boards;
 		}
@@ -96,7 +96,7 @@ namespace Tests.Specs
 				view.EnableSelectionOfLists.ShouldBeFalse();
 
 			It should_empty_the_list_of_boards = () =>
-				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.IsEmpty())).MustHaveHappened();
+				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.IsEmpty(), A<IBoardId>._)).MustHaveHappened();
 
 			It should_empty_the_list_of_lists = () =>
 				A.CallTo(() => view.DisplayLists(A<IEnumerable<List>>.That.IsEmpty())).MustHaveHappened();
@@ -130,6 +130,25 @@ namespace Tests.Specs
 
 			static NewCard[] newCards = new[] { new NewCard("card 1", new ListId("dummy")), new NewCard("card 2", new ListId("dummy")) };
 		}
+
+		public class when_the_refresh_button_is_clicked
+		{
+			Establish context = () =>
+			{
+				A.CallTo(() => trello.Boards.ForMe(BoardFilter.Open)).Returns(new[] { new Board { Name = "board 1" } });
+			};
+
+			Because of = () =>
+			{
+				view.RefreshButtonWasClicked += Raise.WithEmpty().Now;
+				Thread.Sleep(30);
+			};
+
+			It should_refresh_the_list_of_boards = () =>
+				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.Matches(b => b.First().ToString() == "board 1"), A<IBoardId>._)).MustHaveHappened();
+
+			static List<Board> boards;
+		}
 	}
 
 	public abstract class ExportCardsSpecs
@@ -137,7 +156,7 @@ namespace Tests.Specs
 		protected static ExportCardsPresenter presenter;
 		protected static IExportCardsView view;
 		protected static ICreateNewCards transformer;
-		protected static ITrello trello = A.Fake<ITrello>();
+		protected static ITrello trello;
 		protected static IMessageBus messageBus;
 
 		Establish context = () =>
@@ -145,6 +164,7 @@ namespace Tests.Specs
 			view = A.Fake<IExportCardsView>();
 			transformer = A.Fake<ICreateNewCards>();
 			messageBus = new MessageBus();
+			trello = A.Fake<ITrello>();
 			presenter = new ExportCardsPresenter(view, trello, transformer, TaskScheduler.Current, messageBus);
 		};
 	}

@@ -29,6 +29,7 @@
 		private void InitializeComponent()
 		{
 			this.AddCardsGroupBox = new System.Windows.Forms.GroupBox();
+			this.RefreshButton = new System.Windows.Forms.Button();
 			this.StatusLabel = new System.Windows.Forms.Label();
 			this.AddCardsButton = new System.Windows.Forms.Button();
 			this.label2 = new System.Windows.Forms.Label();
@@ -40,6 +41,7 @@
 			// 
 			// AddCardsGroupBox
 			// 
+			this.AddCardsGroupBox.Controls.Add(this.RefreshButton);
 			this.AddCardsGroupBox.Controls.Add(this.StatusLabel);
 			this.AddCardsGroupBox.Controls.Add(this.AddCardsButton);
 			this.AddCardsGroupBox.Controls.Add(this.label2);
@@ -52,6 +54,15 @@
 			this.AddCardsGroupBox.TabIndex = 11;
 			this.AddCardsGroupBox.TabStop = false;
 			this.AddCardsGroupBox.Text = "Choose list";
+			// 
+			// RefreshButton
+			// 
+			this.RefreshButton.Location = new System.Drawing.Point(69, 81);
+			this.RefreshButton.Name = "RefreshButton";
+			this.RefreshButton.Size = new System.Drawing.Size(81, 23);
+			this.RefreshButton.TabIndex = 14;
+			this.RefreshButton.Text = "Refresh";
+			this.RefreshButton.UseVisualStyleBackColor = true;
 			// 
 			// StatusLabel
 			// 
@@ -128,6 +139,7 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox BoardComboBox;
 		private System.Windows.Forms.Label StatusLabel;
+		private System.Windows.Forms.Button RefreshButton;
 
 	}
 }
