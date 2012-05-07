@@ -114,7 +114,7 @@ namespace TrelloExcelAddIn
 			{
 				if (t.Exception == null)
 				{					
-					view.DisplayBoards(t.Result, view.SelectedBoard);					
+					view.DisplayBoards(t.Result);					
 					view.EnableSelectionOfBoards = true;
 				}
 				else

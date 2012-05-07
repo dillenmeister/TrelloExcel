@@ -34,13 +34,13 @@ namespace Tests.Specs
 			};
 
 			It should_display_boards = () =>
-				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>._, A<IBoardId>._)).MustHaveHappened();
+				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>._)).MustHaveHappened();
 
 			It should_display_boards_with_correct_names = () =>
-				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.Matches(b => b.ElementAt(0).ToString() == "board 1"), A<IBoardId>._)).MustHaveHappened();
+				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.Matches(b => b.ElementAt(0).ToString() == "board 1"))).MustHaveHappened();
 
 			It should_display_boards_with_organization_name = () =>
-				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.Matches(b => b.ElementAt(1).ToString() == "board 2 (org 1)"), A<IBoardId>._)).MustHaveHappened();
+				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.Matches(b => b.ElementAt(1).ToString() == "board 2 (org 1)"))).MustHaveHappened();
 
 			static List<Board> boards;
 		}
@@ -96,7 +96,7 @@ namespace Tests.Specs
 				view.EnableSelectionOfLists.ShouldBeFalse();
 
 			It should_empty_the_list_of_boards = () =>
-				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.IsEmpty(), A<IBoardId>._)).MustHaveHappened();
+				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.IsEmpty())).MustHaveHappened();
 
 			It should_empty_the_list_of_lists = () =>
 				A.CallTo(() => view.DisplayLists(A<IEnumerable<List>>.That.IsEmpty())).MustHaveHappened();
@@ -145,7 +145,7 @@ namespace Tests.Specs
 			};
 
 			It should_refresh_the_list_of_boards = () =>
-				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.Matches(b => b.First().ToString() == "board 1"), A<IBoardId>._)).MustHaveHappened();
+				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.Matches(b => b.First().ToString() == "board 1"))).MustHaveHappened();
 
 			static List<Board> boards;
 		}

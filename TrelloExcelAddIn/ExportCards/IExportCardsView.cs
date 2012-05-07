@@ -15,7 +15,7 @@ namespace TrelloExcelAddIn
 		bool EnableExportCards { get; set; }
 		IBoardId SelectedBoard { get; }
 		IListId SelectedList { get; }
-		void DisplayBoards(IEnumerable<BoardViewModel> boards, IBoardId selectBoard = null);
+		void DisplayBoards(IEnumerable<BoardViewModel> boards);
 		void DisplayLists(IEnumerable<List> lists);
 		void ShowErrorMessage(string message);
 		void ShowStatusMessage(string message, params object[] args);		
