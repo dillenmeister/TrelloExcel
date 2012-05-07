@@ -15,11 +15,14 @@ namespace TrelloExcelAddIn
 			BoardComboBox.SelectedIndexChanged += (sender, args) => BoardWasSelected(this, null);
 			AddCardsButton.Click += (sender, args) => ExportCardsWasClicked(this, null);
 			RefreshButton.Click += (sender, args) => RefreshButtonWasClicked(this, null);
+			CancelExportButton.Click += (sender, args) => CancelButtonWasClicked(this, null);
 		}
+
 
 		public event EventHandler BoardWasSelected;
 		public event EventHandler ExportCardsWasClicked;
-		public event EventHandler RefreshButtonWasClicked;		
+		public event EventHandler RefreshButtonWasClicked;
+		public event EventHandler CancelButtonWasClicked;
 
 		public bool EnableSelectionOfBoards
 		{
@@ -39,6 +42,24 @@ namespace TrelloExcelAddIn
 			set { AddCardsButton.Enabled = value; }
 		}
 
+		public bool EnableRefreshButton
+		{
+			get { return RefreshButton.Enabled; }
+			set { RefreshButton.Enabled = value; }
+		}
+
+		public bool HideCancelButton
+		{
+			get { return !CancelExportButton.Visible; }
+			set { CancelExportButton.Visible = !value; }
+		}
+
+		public bool HideExportButton
+		{
+			get { return !AddCardsButton.Visible; }
+			set { AddCardsButton.Visible = !value; }
+		}
+
 		public IBoardId SelectedBoard
 		{
 			get { return (IBoardId)BoardComboBox.SelectedValue; }
@@ -52,8 +73,8 @@ namespace TrelloExcelAddIn
 		public void DisplayBoards(IEnumerable<BoardViewModel> boards)
 		{
 			var boardViewModels = boards.ToList();
-			
-			BoardComboBox.DataSource = boardViewModels;						
+
+			BoardComboBox.DataSource = boardViewModels;
 
 			if (!boardViewModels.Any())
 				BoardComboBox.Text = "";

@@ -8,11 +8,15 @@ namespace TrelloExcelAddIn
 	{
 		event EventHandler BoardWasSelected;
 		event EventHandler ExportCardsWasClicked;
-		event EventHandler RefreshButtonWasClicked;	
-		
+		event EventHandler RefreshButtonWasClicked;
+		event EventHandler CancelButtonWasClicked;
+
 		bool EnableSelectionOfBoards { get; set; }
 		bool EnableSelectionOfLists { get; set; }
 		bool EnableExportCards { get; set; }
+		bool EnableRefreshButton { get; set; }
+		bool HideCancelButton { get; set; }
+		bool HideExportButton { get; set; }
 		IBoardId SelectedBoard { get; }
 		IListId SelectedList { get; }
 		void DisplayBoards(IEnumerable<BoardViewModel> boards);

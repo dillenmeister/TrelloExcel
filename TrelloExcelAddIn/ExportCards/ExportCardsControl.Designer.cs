@@ -36,14 +36,16 @@
 			this.ListComboBox = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.BoardComboBox = new System.Windows.Forms.ComboBox();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.CancelExportButton = new System.Windows.Forms.Button();
 			this.AddCardsGroupBox.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// AddCardsGroupBox
 			// 
-			this.AddCardsGroupBox.Controls.Add(this.RefreshButton);
+			this.AddCardsGroupBox.Controls.Add(this.panel1);
 			this.AddCardsGroupBox.Controls.Add(this.StatusLabel);
-			this.AddCardsGroupBox.Controls.Add(this.AddCardsButton);
 			this.AddCardsGroupBox.Controls.Add(this.label2);
 			this.AddCardsGroupBox.Controls.Add(this.ListComboBox);
 			this.AddCardsGroupBox.Controls.Add(this.label1);
@@ -57,9 +59,10 @@
 			// 
 			// RefreshButton
 			// 
-			this.RefreshButton.Location = new System.Drawing.Point(69, 81);
+			this.RefreshButton.Dock = System.Windows.Forms.DockStyle.Right;
+			this.RefreshButton.Location = new System.Drawing.Point(-14, 0);
 			this.RefreshButton.Name = "RefreshButton";
-			this.RefreshButton.Size = new System.Drawing.Size(81, 23);
+			this.RefreshButton.Size = new System.Drawing.Size(81, 22);
 			this.RefreshButton.TabIndex = 14;
 			this.RefreshButton.Text = "Refresh";
 			this.RefreshButton.UseVisualStyleBackColor = true;
@@ -74,9 +77,10 @@
 			// 
 			// AddCardsButton
 			// 
-			this.AddCardsButton.Location = new System.Drawing.Point(156, 81);
+			this.AddCardsButton.Dock = System.Windows.Forms.DockStyle.Right;
+			this.AddCardsButton.Location = new System.Drawing.Point(148, 0);
 			this.AddCardsButton.Name = "AddCardsButton";
-			this.AddCardsButton.Size = new System.Drawing.Size(81, 23);
+			this.AddCardsButton.Size = new System.Drawing.Size(81, 22);
 			this.AddCardsButton.TabIndex = 12;
 			this.AddCardsButton.Text = "Export cards";
 			this.AddCardsButton.UseVisualStyleBackColor = true;
@@ -117,6 +121,27 @@
 			this.BoardComboBox.Size = new System.Drawing.Size(194, 21);
 			this.BoardComboBox.TabIndex = 8;
 			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.RefreshButton);
+			this.panel1.Controls.Add(this.CancelExportButton);
+			this.panel1.Controls.Add(this.AddCardsButton);
+			this.panel1.Location = new System.Drawing.Point(8, 81);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(229, 22);
+			this.panel1.TabIndex = 15;
+			// 
+			// CancelExportButton
+			// 
+			this.CancelExportButton.Dock = System.Windows.Forms.DockStyle.Right;
+			this.CancelExportButton.Location = new System.Drawing.Point(67, 0);
+			this.CancelExportButton.Name = "CancelExportButton";
+			this.CancelExportButton.Size = new System.Drawing.Size(81, 22);
+			this.CancelExportButton.TabIndex = 15;
+			this.CancelExportButton.Text = "Cancel";
+			this.CancelExportButton.UseVisualStyleBackColor = true;
+			this.CancelExportButton.Visible = false;
+			// 
 			// ExportCardsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -126,6 +151,7 @@
 			this.Size = new System.Drawing.Size(273, 154);
 			this.AddCardsGroupBox.ResumeLayout(false);
 			this.AddCardsGroupBox.PerformLayout();
+			this.panel1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -140,6 +166,8 @@
 		private System.Windows.Forms.ComboBox BoardComboBox;
 		private System.Windows.Forms.Label StatusLabel;
 		private System.Windows.Forms.Button RefreshButton;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Button CancelExportButton;
 
 	}
 }

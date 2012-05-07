@@ -14,6 +14,7 @@ namespace TrelloExcelAddIn
 		private readonly IMessageBus messageBus;
 		private readonly ITrello trello;
 		private readonly ICreateNewCards transformer;
+		private CancellationTokenSource exportCardsCancellationTokenSource;
 
 		public ExportCardsPresenter(IExportCardsView view, ITrello trello, ICreateNewCards transformer, TaskScheduler taskScheduler, IMessageBus messageBus)
 		{
@@ -22,6 +23,8 @@ namespace TrelloExcelAddIn
 			this.messageBus = messageBus;
 			this.trello = trello;
 			this.transformer = transformer;
+
+			exportCardsCancellationTokenSource = new CancellationTokenSource();
 
 			SetupMessageEventHandlers();
 			SetupEventHandlers();
@@ -38,22 +41,48 @@ namespace TrelloExcelAddIn
 			view.BoardWasSelected += BoardWasSelected;
 			view.ExportCardsWasClicked += ExportCardsWasClicked;
 			view.RefreshButtonWasClicked += RefreshButtonWasClicked;
+			view.CancelButtonWasClicked += CancelButtonWasClicked;
 		}
 
 		private void SetupInitialState()
 		{
+			DisableStuff();
+		}
+
+		private void DisableStuff()
+		{
 			view.EnableSelectionOfBoards = false;
 			view.EnableSelectionOfLists = false;
 			view.EnableExportCards = false;
+			view.EnableRefreshButton = false;
+		}
+
+		private void EnableStuff()
+		{
+			view.EnableSelectionOfBoards = true;
+			view.EnableSelectionOfLists = true;
+			view.EnableExportCards = true;
+			view.EnableRefreshButton = true;
 		}
 
 		private void ExportCardsWasClicked(object sender, EventArgs eventArgs)
 		{
 			view.ShowStatusMessage("Adding cards...");
+			view.HideCancelButton = false;
+			view.HideExportButton = true;
+			DisableStuff();
 
 			var cards = transformer.CreateCards(view.SelectedList);
-			var addCardsTask = Task.Factory.StartNew(() => ExportCards(cards));
-			addCardsTask.ContinueWith(t => view.ShowStatusMessage("All cards added!"), taskScheduler);
+			var addCardsTask = Task.Factory.StartNew(() => ExportCards(cards), exportCardsCancellationTokenSource.Token);
+			addCardsTask.ContinueWith(task =>
+			{
+				view.ShowStatusMessage(exportCardsCancellationTokenSource.IsCancellationRequested ? "Canceled!" : "All cards added!");
+				exportCardsCancellationTokenSource = new CancellationTokenSource();
+
+				EnableStuff();
+				view.HideCancelButton = true;
+				view.HideExportButton = false;
+			}, taskScheduler);
 		}
 
 		private void RefreshButtonWasClicked(object sender, EventArgs eventArgs)
@@ -61,21 +90,31 @@ namespace TrelloExcelAddIn
 			FetchAndDisplayBoards();
 		}
 
-		private void ExportCards(IEnumerable<NewCard> cards)
+		private void CancelButtonWasClicked(object sender, EventArgs eventArgs)
+		{
+			exportCardsCancellationTokenSource.Cancel();
+		}
+
+		private bool ExportCards(IEnumerable<NewCard> cards)
 		{
 			var totalCount = cards.Count();
 			var currentCard = 0;
 			foreach (var newCard in cards)
 			{
+				if (exportCardsCancellationTokenSource.Token.IsCancellationRequested)
+					return false;
+
 				Task.Factory.StartNew(() => view.ShowStatusMessage(@"Adding card {0}/{1}.", ++currentCard, totalCount),
 					CancellationToken.None, TaskCreationOptions.None, taskScheduler);
 
 				trello.Cards.Add(newCard);
 			}
+
+			return true;
 		}
 
 		private void FetchAndDisplayBoards()
-		{			
+		{
 			Task.Factory.StartNew(() =>
 			{
 				// <WTF>
@@ -113,8 +152,8 @@ namespace TrelloExcelAddIn
 			.ContinueWith(t =>
 			{
 				if (t.Exception == null)
-				{					
-					view.DisplayBoards(t.Result);					
+				{
+					view.DisplayBoards(t.Result);
 					view.EnableSelectionOfBoards = true;
 				}
 				else
@@ -135,10 +174,9 @@ namespace TrelloExcelAddIn
 				.ContinueWith(t =>
 				{
 					if (t.Exception == null)
-					{						
-						view.DisplayLists(t.Result);						
-						view.EnableSelectionOfLists = true;
-						view.EnableExportCards = true;
+					{
+						view.DisplayLists(t.Result);
+						EnableStuff();
 					}
 					else
 					{
