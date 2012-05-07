@@ -105,7 +105,7 @@ namespace Tests.Specs
 		public class when_export_cards_is_clicked_and_two_rows_are_selected
 		{
 			Establish context = () =>
-				A.CallTo(() => transformer.GetCards(A<IListId>._)).Returns(newCards);
+				A.CallTo(() => transformer.CreateCards(A<IListId>._)).Returns(newCards);
 
 			Because of = () =>
 			{
@@ -136,16 +136,16 @@ namespace Tests.Specs
 	{
 		protected static ExportCardsPresenter presenter;
 		protected static IExportCardsView view;
-		protected static ISelectedRangeToCardsTransformer transformer;
+		protected static ICreateNewCards transformer;
 		protected static ITrello trello = A.Fake<ITrello>();
 		protected static IMessageBus messageBus;
 
 		Establish context = () =>
 		{
 			view = A.Fake<IExportCardsView>();
-			transformer = A.Fake<ISelectedRangeToCardsTransformer>();
+			transformer = A.Fake<ICreateNewCards>();
 			messageBus = new MessageBus();
-			presenter = new ExportCardsPresenter(view, trello, transformer, A.Fake<IProcess>(), TaskScheduler.Current, messageBus);
+			presenter = new ExportCardsPresenter(view, trello, transformer, TaskScheduler.Current, messageBus);
 		};
 	}
 }

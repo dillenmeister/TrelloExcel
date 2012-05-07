@@ -209,9 +209,10 @@
       <DependentUpon>ExportCardsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ExportCards\ExportCardsPresenter.cs" />
+    <Compile Include="ExportCards\Grid.cs" />
+    <Compile Include="ExportCards\GridToNewCardTransformer.cs" />
+    <Compile Include="ExportCards\ICreateNewCards.cs" />
     <Compile Include="ExportCards\IExportCardsView.cs" />
-    <Compile Include="ExportCards\ISelectedRangeToCardsTransformer.cs" />
-    <Compile Include="ExportCards\SelectedRangeToCardsTransformer.cs" />
     <Compile Include="IMessageBus.cs" />
     <Compile Include="MessageBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

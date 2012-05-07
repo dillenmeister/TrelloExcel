@@ -10,16 +10,14 @@ namespace TrelloExcelAddIn
 	public class ExportCardsPresenter
 	{
 		private readonly IExportCardsView view;
-		private readonly IProcess process;
 		private readonly TaskScheduler taskScheduler;
 		private readonly IMessageBus messageBus;
 		private readonly ITrello trello;
-		private readonly ISelectedRangeToCardsTransformer transformer;
+		private readonly ICreateNewCards transformer;
 
-		public ExportCardsPresenter(IExportCardsView view, ITrello trello, ISelectedRangeToCardsTransformer transformer, IProcess process, TaskScheduler taskScheduler, IMessageBus messageBus)
+		public ExportCardsPresenter(IExportCardsView view, ITrello trello, ICreateNewCards transformer, TaskScheduler taskScheduler, IMessageBus messageBus)
 		{
 			this.view = view;
-			this.process = process;
 			this.taskScheduler = taskScheduler;
 			this.messageBus = messageBus;
 			this.trello = trello;
@@ -39,7 +37,6 @@ namespace TrelloExcelAddIn
 		{
 			view.BoardWasSelected += BoardWasSelected;
 			view.ExportCardsWasClicked += ExportCardsWasClicked;
-		
 		}
 
 		private void SetupInitialState()
@@ -53,7 +50,7 @@ namespace TrelloExcelAddIn
 		{
 			view.ShowStatusMessage("Adding cards...");
 
-			var cards = transformer.GetCards(view.SelectedList);
+			var cards = transformer.CreateCards(view.SelectedList);
 			var addCardsTask = Task.Factory.StartNew(() => ExportCards(cards));
 			addCardsTask.ContinueWith(t => view.ShowStatusMessage("All cards added!"), taskScheduler);
 		}
@@ -70,7 +67,6 @@ namespace TrelloExcelAddIn
 				trello.Cards.Add(newCard);
 			}
 		}
-
 
 		private void FetchAndDisplayBoards()
 		{
@@ -152,10 +148,10 @@ namespace TrelloExcelAddIn
 			view.DisplayBoards(Enumerable.Empty<BoardViewModel>());
 			view.DisplayLists(Enumerable.Empty<List>());
 
-			if(exception.InnerException is TrelloUnauthorizedException)			
-				messageBus.Publish(new TrelloWasUnauthorizedEvent());						
-			else
-				view.ShowErrorMessage(exception.InnerException.Message);
+			if (exception.InnerException is TrelloUnauthorizedException)
+				messageBus.Publish(new TrelloWasUnauthorizedEvent());
+
+			view.ShowErrorMessage(exception.InnerException.Message);
 		}
 	}
 }

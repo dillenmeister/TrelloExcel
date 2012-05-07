@@ -29,7 +29,7 @@ namespace TrelloExcelAddIn
 
 			TaskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
 
-			ExportCardsPresenter = new ExportCardsPresenter(exportCardsControl, Trello, new SelectedRangeToCardsTransformer(), new ProcessImpl(), TaskScheduler, MessageBus);
+			ExportCardsPresenter = new ExportCardsPresenter(exportCardsControl, Trello, new GridToNewCardTransformer(), TaskScheduler, MessageBus);
 			AuthorizePresenter = new AuthorizePresenter(authorizeForm, Trello, MessageBus);
 
 			Globals.Ribbons.TrelloRibbon.SetMessageBus(MessageBus);
