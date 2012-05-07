@@ -740,8 +740,8 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TrelloExcel"
-        "ProductCode" = "8:{438EE58B-4F8B-436F-B2F7-6DA59E4059B5}"
-        "PackageCode" = "8:{381611C0-1B03-43CE-8C93-191EF8E8ECC3}"
+        "ProductCode" = "8:{36AE3736-89BA-42C4-AFA5-40A28DC0CD8C}"
+        "PackageCode" = "8:{8B0FD18B-7E73-49A9-8CD5-158A52D9A044}"
         "UpgradeCode" = "8:{E0527355-4D35-4952-B4E7-A15047BDCFA8}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -1364,7 +1364,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_734502AED78349219C1DDAED3B949354"
             {
-            "SourcePath" = "8:..\\TrelloExcelAddIn\\obj\\Debug\\TrelloExcelAddIn.dll"
+            "SourcePath" = "8:..\\TrelloExcelAddIn\\obj\\Release\\TrelloExcelAddIn.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_DCEC47667B3A41CB961C320249142AAE"

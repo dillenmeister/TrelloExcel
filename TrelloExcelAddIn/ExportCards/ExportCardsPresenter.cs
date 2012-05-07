@@ -115,6 +115,7 @@ namespace TrelloExcelAddIn
 
 		private void FetchAndDisplayBoards()
 		{
+			DisableStuff();
 			Task.Factory.StartNew(() =>
 			{
 				// <WTF>
