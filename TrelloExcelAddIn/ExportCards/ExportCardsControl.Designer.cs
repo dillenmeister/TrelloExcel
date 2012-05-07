@@ -50,7 +50,7 @@
 			this.AddCardsGroupBox.Controls.Add(this.BoardComboBox);
 			this.AddCardsGroupBox.Location = new System.Drawing.Point(8, 9);
 			this.AddCardsGroupBox.Name = "AddCardsGroupBox";
-			this.AddCardsGroupBox.Size = new System.Drawing.Size(256, 115);
+			this.AddCardsGroupBox.Size = new System.Drawing.Size(256, 134);
 			this.AddCardsGroupBox.TabIndex = 11;
 			this.AddCardsGroupBox.TabStop = false;
 			this.AddCardsGroupBox.Text = "Choose list";
@@ -67,7 +67,7 @@
 			// StatusLabel
 			// 
 			this.StatusLabel.AutoSize = true;
-			this.StatusLabel.Location = new System.Drawing.Point(5, 86);
+			this.StatusLabel.Location = new System.Drawing.Point(5, 107);
 			this.StatusLabel.Name = "StatusLabel";
 			this.StatusLabel.Size = new System.Drawing.Size(0, 13);
 			this.StatusLabel.TabIndex = 13;
@@ -123,7 +123,7 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.Controls.Add(this.AddCardsGroupBox);
 			this.Name = "ExportCardsControl";
-			this.Size = new System.Drawing.Size(273, 138);
+			this.Size = new System.Drawing.Size(273, 154);
 			this.AddCardsGroupBox.ResumeLayout(false);
 			this.AddCardsGroupBox.PerformLayout();
 			this.ResumeLayout(false);
