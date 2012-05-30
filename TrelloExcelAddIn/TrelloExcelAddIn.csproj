@@ -271,8 +271,10 @@
   <ItemGroup>
     <Content Include="Content\s40.ico" />
     <Content Include="Content\s40.png" />
-    <None Include="Resources\157_GetPermission_48x48_72.png" />
-    <None Include="Resources\112_Tick_Green_32x32_72.png" />
+    <Content Include="Resources\112_Tick_Green_32x32_72.png" />
+    <Content Include="Resources\157_GetPermission_48x48_72.png" />
+    <None Include="ExportCards\Resources\157_GetPermission_48x48_72.png" />
+    <None Include="ExportCards\Resources\112_Tick_Green_32x32_72.png" />
   </ItemGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

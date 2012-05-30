@@ -29,17 +29,20 @@
 		private void InitializeComponent()
 		{
 			this.AddCardsGroupBox = new System.Windows.Forms.GroupBox();
+			this.panel1 = new System.Windows.Forms.Panel();
 			this.RefreshButton = new System.Windows.Forms.Button();
-			this.StatusLabel = new System.Windows.Forms.Label();
+			this.CancelExportButton = new System.Windows.Forms.Button();
 			this.AddCardsButton = new System.Windows.Forms.Button();
+			this.StatusLabel = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.ListComboBox = new System.Windows.Forms.ComboBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.BoardComboBox = new System.Windows.Forms.ComboBox();
-			this.panel1 = new System.Windows.Forms.Panel();
-			this.CancelExportButton = new System.Windows.Forms.Button();
+			this.label3 = new System.Windows.Forms.Label();
+			this.groupBox1 = new System.Windows.Forms.GroupBox();
 			this.AddCardsGroupBox.SuspendLayout();
 			this.panel1.SuspendLayout();
+			this.groupBox1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// AddCardsGroupBox
@@ -50,22 +53,53 @@
 			this.AddCardsGroupBox.Controls.Add(this.ListComboBox);
 			this.AddCardsGroupBox.Controls.Add(this.label1);
 			this.AddCardsGroupBox.Controls.Add(this.BoardComboBox);
-			this.AddCardsGroupBox.Location = new System.Drawing.Point(8, 9);
+			this.AddCardsGroupBox.Location = new System.Drawing.Point(8, 96);
 			this.AddCardsGroupBox.Name = "AddCardsGroupBox";
 			this.AddCardsGroupBox.Size = new System.Drawing.Size(256, 134);
 			this.AddCardsGroupBox.TabIndex = 11;
 			this.AddCardsGroupBox.TabStop = false;
-			this.AddCardsGroupBox.Text = "Choose list";
+			this.AddCardsGroupBox.Text = "2. Choose list for the cards";
+			// 
+			// panel1
+			// 
+			this.panel1.Controls.Add(this.RefreshButton);
+			this.panel1.Controls.Add(this.CancelExportButton);
+			this.panel1.Controls.Add(this.AddCardsButton);
+			this.panel1.Location = new System.Drawing.Point(8, 81);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(229, 22);
+			this.panel1.TabIndex = 15;
 			// 
 			// RefreshButton
 			// 
 			this.RefreshButton.Dock = System.Windows.Forms.DockStyle.Right;
-			this.RefreshButton.Location = new System.Drawing.Point(-14, 0);
+			this.RefreshButton.Location = new System.Drawing.Point(-71, 0);
 			this.RefreshButton.Name = "RefreshButton";
-			this.RefreshButton.Size = new System.Drawing.Size(81, 22);
+			this.RefreshButton.Size = new System.Drawing.Size(100, 22);
 			this.RefreshButton.TabIndex = 14;
 			this.RefreshButton.Text = "Refresh";
 			this.RefreshButton.UseVisualStyleBackColor = true;
+			// 
+			// CancelExportButton
+			// 
+			this.CancelExportButton.Dock = System.Windows.Forms.DockStyle.Right;
+			this.CancelExportButton.Location = new System.Drawing.Point(29, 0);
+			this.CancelExportButton.Name = "CancelExportButton";
+			this.CancelExportButton.Size = new System.Drawing.Size(100, 22);
+			this.CancelExportButton.TabIndex = 15;
+			this.CancelExportButton.Text = "Cancel";
+			this.CancelExportButton.UseVisualStyleBackColor = true;
+			this.CancelExportButton.Visible = false;
+			// 
+			// AddCardsButton
+			// 
+			this.AddCardsButton.Dock = System.Windows.Forms.DockStyle.Right;
+			this.AddCardsButton.Location = new System.Drawing.Point(129, 0);
+			this.AddCardsButton.Name = "AddCardsButton";
+			this.AddCardsButton.Size = new System.Drawing.Size(100, 22);
+			this.AddCardsButton.TabIndex = 12;
+			this.AddCardsButton.Text = "3. Export cards";
+			this.AddCardsButton.UseVisualStyleBackColor = true;
 			// 
 			// StatusLabel
 			// 
@@ -74,16 +108,6 @@
 			this.StatusLabel.Name = "StatusLabel";
 			this.StatusLabel.Size = new System.Drawing.Size(0, 13);
 			this.StatusLabel.TabIndex = 13;
-			// 
-			// AddCardsButton
-			// 
-			this.AddCardsButton.Dock = System.Windows.Forms.DockStyle.Right;
-			this.AddCardsButton.Location = new System.Drawing.Point(148, 0);
-			this.AddCardsButton.Name = "AddCardsButton";
-			this.AddCardsButton.Size = new System.Drawing.Size(81, 22);
-			this.AddCardsButton.TabIndex = 12;
-			this.AddCardsButton.Text = "Export cards";
-			this.AddCardsButton.UseVisualStyleBackColor = true;
 			// 
 			// label2
 			// 
@@ -121,37 +145,39 @@
 			this.BoardComboBox.Size = new System.Drawing.Size(194, 21);
 			this.BoardComboBox.TabIndex = 8;
 			// 
-			// panel1
+			// label3
 			// 
-			this.panel1.Controls.Add(this.RefreshButton);
-			this.panel1.Controls.Add(this.CancelExportButton);
-			this.panel1.Controls.Add(this.AddCardsButton);
-			this.panel1.Location = new System.Drawing.Point(8, 81);
-			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(229, 22);
-			this.panel1.TabIndex = 15;
+			this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.label3.Location = new System.Drawing.Point(3, 16);
+			this.label3.Name = "label3";
+			this.label3.Padding = new System.Windows.Forms.Padding(4);
+			this.label3.Size = new System.Drawing.Size(250, 63);
+			this.label3.TabIndex = 12;
+			this.label3.Text = "Select the rows that you want to export to cards in Trello. The first column will" +
+    " be the card name and the second column (if any) will be the card description.";
 			// 
-			// CancelExportButton
+			// groupBox1
 			// 
-			this.CancelExportButton.Dock = System.Windows.Forms.DockStyle.Right;
-			this.CancelExportButton.Location = new System.Drawing.Point(67, 0);
-			this.CancelExportButton.Name = "CancelExportButton";
-			this.CancelExportButton.Size = new System.Drawing.Size(81, 22);
-			this.CancelExportButton.TabIndex = 15;
-			this.CancelExportButton.Text = "Cancel";
-			this.CancelExportButton.UseVisualStyleBackColor = true;
-			this.CancelExportButton.Visible = false;
+			this.groupBox1.Controls.Add(this.label3);
+			this.groupBox1.Location = new System.Drawing.Point(8, 8);
+			this.groupBox1.Name = "groupBox1";
+			this.groupBox1.Size = new System.Drawing.Size(256, 82);
+			this.groupBox1.TabIndex = 13;
+			this.groupBox1.TabStop = false;
+			this.groupBox1.Text = "1. Select rows";
 			// 
 			// ExportCardsControl
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.groupBox1);
 			this.Controls.Add(this.AddCardsGroupBox);
 			this.Name = "ExportCardsControl";
-			this.Size = new System.Drawing.Size(273, 154);
+			this.Size = new System.Drawing.Size(273, 246);
 			this.AddCardsGroupBox.ResumeLayout(false);
 			this.AddCardsGroupBox.PerformLayout();
 			this.panel1.ResumeLayout(false);
+			this.groupBox1.ResumeLayout(false);
 			this.ResumeLayout(false);
 
 		}
@@ -168,6 +194,8 @@
 		private System.Windows.Forms.Button RefreshButton;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Button CancelExportButton;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.GroupBox groupBox1;
 
 	}
 }
