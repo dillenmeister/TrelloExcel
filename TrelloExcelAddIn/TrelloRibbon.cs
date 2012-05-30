@@ -11,8 +11,7 @@ namespace TrelloExcelAddIn
 			{ "LoginExpireOneHourButton", Expiration.OneHour }, 
 			{ "LoginExpireOneDayButton", Expiration.OneDay }, 
 			{ "LoginExpire30DaysButton", Expiration.ThirtyDays }, 
-			{ "LoginNeverExpireButton", Expiration.Never }, 
-			{ "LoginSplitButton", Expiration.Never}
+			{ "LoginNeverExpireButton", Expiration.Never }
 		};
 
 		private void TrelloRibbon_Load(object sender, RibbonUIEventArgs e)
@@ -49,7 +48,10 @@ namespace TrelloExcelAddIn
 
 		private void LoginButton_Click(object sender, RibbonControlEventArgs e)
 		{
-			Globals.ThisAddIn.AuthorizePresenter.StartAuthorization(ButtonIdsToExpirationMap[e.Control.Id]);
+			Expiration expiration;
+			if(!ButtonIdsToExpirationMap.TryGetValue(e.Control.Id, out expiration))
+				expiration = Expiration.Never;
+			Globals.ThisAddIn.AuthorizePresenter.StartAuthorization(expiration);
 		}
 	}
 }
