@@ -691,11 +691,18 @@
         }
         "LaunchCondition"
         {
+            "{836E08B8-0285-4809-BA42-01DB6754A45D}:_469C3C4DE1ED4490923D669992170D64"
+            {
+            "Name" = "8:Excel 2010 availability"
+            "Condition" = "8:HASEXCEL2010"
+            "Message" = "8:Excel 2010 is required."
+            "InstallUrl" = "8:"
+            }
             "{836E08B8-0285-4809-BA42-01DB6754A45D}:_7F82F66A6F004B038F159EBDCC4522AE"
             {
             "Name" = "8:Verify Office 2010 Shared PIA availability"
             "Condition" = "8:HASSHAREDPIA"
-            "Message" = "8: A required component for interacting with Excel is not available. Please"
+            "Message" = "8: A required component for interacting with Excel is not available. Please run setup.exe."
             "InstallUrl" = "8:"
             }
             "{836E08B8-0285-4809-BA42-01DB6754A45D}:_DEF3171E43014640844878FA47780FA3"
@@ -724,6 +731,12 @@
             "Value" = "8:Version"
             "Property" = "8:OFFICERUNTIME"
             }
+            "{B8A5E33E-1082-4FE2-AC2E-1197791E9409}:_B6BA5E8E22F74C1EAF0894FC201BA159"
+            {
+            "Name" = "8:Search for Excel 2010"
+            "ComponentId" = "8:{EA7564AC-C67D-4868-BE5C-26E4FC2223FF}"
+            "Property" = "8:HASEXCEL2010"
+            }
             "{B8A5E33E-1082-4FE2-AC2E-1197791E9409}:_DB73CA4E4B11411383BFD5F7F83979BA"
             {
             "Name" = "8:Search for Office 2010 Shared PIA"
@@ -741,7 +754,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TrelloExcel"
         "ProductCode" = "8:{14FC817C-AB27-4B91-949A-4C5F27951DB2}"
-        "PackageCode" = "8:{7392CEAE-5D0B-4DE1-8B2A-8800EE89F838}"
+        "PackageCode" = "8:{3F7BD772-2915-4FD0-9E90-4337C27F0DB4}"
         "UpgradeCode" = "8:{E0527355-4D35-4952-B4E7-A15047BDCFA8}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
