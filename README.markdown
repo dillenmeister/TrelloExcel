@@ -1,5 +1,5 @@
 # TrelloExcel
-An Excel Add-In that creates cards in [Trello](https://trello.com) from rows in Excel.
+An Excel Add-In that creates cards in [Trello](https://trello.com) from rows in Excel 2010 (Excel 2007 is not supported).
 
 Download it from the [download page](https://github.com/dillenmeister/TrelloExcel/downloads).
 
