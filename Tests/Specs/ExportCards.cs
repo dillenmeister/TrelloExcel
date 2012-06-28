@@ -1,4 +1,6 @@
 ﻿// ReSharper disable InconsistentNaming
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -118,8 +120,8 @@ namespace Tests.Specs
 
 			It should_add_each_card_to_trello = () =>
 			{
-				A.CallTo(() => trello.Cards.Add(A<NewCard>.That.Matches(c => c.Name == "card 1"))).MustHaveHappened();
-				A.CallTo(() => trello.Cards.Add(A<NewCard>.That.Matches(c => c.Name == "card 2"))).MustHaveHappened();
+				A.CallTo(() => trello.Cards.Add(A<NewCard>.That.Matches(c => c.Name == "card 1" && c.Desc == "desc 1"))).MustHaveHappened();
+				A.CallTo(() => trello.Cards.Add(A<NewCard>.That.Matches(c => c.Name == "card 2" && c.Desc == "desc 2"))).MustHaveHappened();
 			};
 
 			It should_display_a_status_message_for_each_card_added = () =>
@@ -128,7 +130,35 @@ namespace Tests.Specs
 			It should_display_a_status_message_when_all_cards_are_added = () =>
 				A.CallTo(() => view.ShowStatusMessage("All cards added!", A<object[]>._)).MustHaveHappened();
 
-			static CardInfo[] newCards = new[] { new CardInfo { Name = "card 1", ListId = new ListId("dummy") }, new CardInfo { Name = "card 2", ListId = new ListId("dummy") } };
+			static CardInfo[] newCards = new[] 
+			{ 
+				new CardInfo { Name = "card 1", Desc = "desc 1", ListId = new ListId("dummy") }, 
+				new CardInfo { Name = "card 2", Desc = "desc 2", ListId = new ListId("dummy") } 
+			};
+		}
+
+		public class when_export_cards_is_clicked_and_the_selected_row_has_a_due_date
+		{
+			Establish context = () =>
+			{
+				A.CallTo(() => transformer.CreateCards(A<IListId>._)).Returns(newCards);
+				A.CallTo(() => trello.Cards.Add(A<NewCard>._)).Returns(new Card { Id = "1" });
+			};
+
+			Because of = () =>
+			{
+				view.ExportCardsWasClicked += Raise.WithEmpty().Now;
+				Thread.Sleep(30);
+			};
+
+			It should_add_due_date = () => A.CallTo(() => trello.Cards.ChangeDueDate(
+				A<ICardId>.That.Matches(id => id.GetCardId() == "1"), new DateTime(2012, 01, 01)))
+				.MustHaveHappened();
+
+			static CardInfo[] newCards = new[] 
+			{ 
+				new CardInfo { Name = "card 1", Due = new DateTime(2012, 01, 01), ListId = new ListId("dummy") },
+			};
 		}
 
 		public class when_the_refresh_button_is_clicked

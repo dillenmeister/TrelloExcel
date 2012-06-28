@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Machine.Specifications;
 using TrelloExcelAddIn;
@@ -22,7 +23,7 @@ namespace Tests.Specs
 		{
 			Because of = () =>
 			{
-				grid.AddCell(1, 1, "cell 1,1");
+				grid.AddCell(1, 1, "cell 1,1", typeof(string));
 				CreateNewCards();
 			};
 
@@ -44,8 +45,8 @@ namespace Tests.Specs
 		{
 			Because of = () =>
 			{
-				grid.AddCell(1, 1, "cell 1,1");
-				grid.AddCell(1, 2, "cell 1,2");			
+				grid.AddCell(1, 1, "cell 1,1", typeof(string));
+				grid.AddCell(1, 2, "cell 1,2", typeof(string));			
 				CreateNewCards();
 			};
 
@@ -63,8 +64,8 @@ namespace Tests.Specs
 		{
 			Because of = () =>
 			{
-				grid.AddCell(1, 1, "cell 1,1");
-				grid.AddCell(2, 1, "cell 2,1");
+				grid.AddCell(1, 1, "cell 1,1", typeof(string));
+				grid.AddCell(2, 1, "cell 2,1", typeof(string));
 				CreateNewCards();
 			};
 
@@ -78,12 +79,31 @@ namespace Tests.Specs
 				createdCards.First().Desc.ShouldEqual("cell 2,1");
 		}
 
+		public class when_grid_has_two_cells_on_the_same_row_and_one_is_a_date
+		{
+			Because of = () =>
+			{
+				grid.AddCell(1, 1, "cell 1,1", typeof(string));
+				grid.AddCell(2, 1, "2012-01-01", typeof(DateTime));
+				CreateNewCards();
+			};
+
+			It should_create_one_card = () =>
+				createdCards.Count().ShouldEqual(1);
+
+			It should_set_the_name_of_the_card_to_the_value_of_the_first_cell = () =>
+				createdCards.First().Name.ShouldEqual("cell 1,1");
+
+			It should_set_the_due_date_of_the_card_to_the_value_of_the_second_cell = () =>
+				createdCards.First().Due.ShouldEqual(new DateTime(2012, 01, 01));
+		}
+
 		public class when_grid_has_two_cells_on_the_same_column_with_one_column_apart
 		{
 			Because of = () =>
 			{
-				grid.AddCell(1, 1, "cell 1,1");
-				grid.AddCell(3, 1, "cell 3,1");
+				grid.AddCell(1, 1, "cell 1,1", typeof(string));
+				grid.AddCell(3, 1, "cell 3,1", typeof(string));
 				CreateNewCards();
 			};
 
@@ -101,8 +121,8 @@ namespace Tests.Specs
 		{
 			Because of = () =>
 			{
-				grid.AddCell(1, 1, "cell 1,1");
-				grid.AddCell(2, 2, "cell 2,2");	
+				grid.AddCell(1, 1, "cell 1,1", typeof(string));
+				grid.AddCell(2, 2, "cell 2,2", typeof(string));	
 				CreateNewCards();
 			};
 
@@ -118,7 +138,7 @@ namespace Tests.Specs
 			Because of = () =>
 			{
 				listId = "listId";
-				grid.AddCell(1, 1, "any card");
+				grid.AddCell(1, 1, "any card", typeof(string));
 				CreateNewCards();
 			};
 

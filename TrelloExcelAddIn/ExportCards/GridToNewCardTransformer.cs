@@ -13,7 +13,7 @@ namespace TrelloExcelAddIn
 			var grid = new Grid();
 
 			foreach (Range cell in GetSelectedRange())			
-				grid.AddCell(cell.Column, cell.Row, Convert.ToString(cell.Value));			
+				grid.AddCell(cell.Column, cell.Row, Convert.ToString(cell.Value), cell.Value.GetType());			
 
 			return CreateCards(grid, list);
 		}
@@ -31,8 +31,16 @@ namespace TrelloExcelAddIn
 				.Select(c =>
 				{
 					var newCard = new CardInfo { Name = c.First().Value, ListId = list };
-					if (c.Count() > 1)
-						newCard.Desc = c.ElementAt(1).Value;
+					var skipFirstColumn = c.Skip(1);
+
+					var firstDateColumn = skipFirstColumn.FirstOrDefault(dc => dc.Type == typeof (DateTime));
+					if (firstDateColumn != null)
+						newCard.Due = DateTime.Parse(firstDateColumn.Value);
+
+					var firstStringColumn = skipFirstColumn.FirstOrDefault(sc => sc.Type == typeof (string));
+					if(firstStringColumn != null)
+						newCard.Desc = firstStringColumn.Value;
+
 					return newCard;
 				});				
 		}

@@ -108,7 +108,10 @@ namespace TrelloExcelAddIn
 					CancellationToken.None, TaskCreationOptions.None, taskScheduler);
 
 				var newCard = new NewCard(cardInfo.Name, cardInfo.ListId) { Desc = cardInfo.Desc };
-				trello.Cards.Add(newCard);
+				var addedCard = trello.Cards.Add(newCard);
+
+				if(cardInfo.Due.HasValue)
+					trello.Cards.ChangeDueDate(addedCard, cardInfo.Due.Value);
 			}
 
 			return true;
