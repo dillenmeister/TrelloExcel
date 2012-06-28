@@ -202,6 +202,7 @@
     <Compile Include="Authorize\AuthorizePresenter.cs" />
     <Compile Include="Authorize\IAuthorizeView.cs" />
     <Compile Include="ExportCards\BoardViewModel.cs" />
+    <Compile Include="ExportCards\CardInfo.cs" />
     <Compile Include="ExportCards\ExportCardsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -5,7 +5,7 @@ namespace TrelloExcelAddIn
 {
 	public interface ICreateNewCards
 	{
-		IEnumerable<NewCard> CreateCards(IListId list);
-		IEnumerable<NewCard> CreateCards(Grid grid, IListId list);
+		IEnumerable<CardInfo> CreateCards(IListId list);
+		IEnumerable<CardInfo> CreateCards(Grid grid, IListId list);
 	}
 }

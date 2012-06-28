@@ -118,8 +118,8 @@ namespace Tests.Specs
 
 			It should_add_each_card_to_trello = () =>
 			{
-				A.CallTo(() => trello.Cards.Add(newCards[0])).MustHaveHappened();
-				A.CallTo(() => trello.Cards.Add(newCards[1])).MustHaveHappened();
+				A.CallTo(() => trello.Cards.Add(A<NewCard>.That.Matches(c => c.Name == "card 1"))).MustHaveHappened();
+				A.CallTo(() => trello.Cards.Add(A<NewCard>.That.Matches(c => c.Name == "card 2"))).MustHaveHappened();
 			};
 
 			It should_display_a_status_message_for_each_card_added = () =>
@@ -128,7 +128,7 @@ namespace Tests.Specs
 			It should_display_a_status_message_when_all_cards_are_added = () =>
 				A.CallTo(() => view.ShowStatusMessage("All cards added!", A<object[]>._)).MustHaveHappened();
 
-			static NewCard[] newCards = new[] { new NewCard("card 1", new ListId("dummy")), new NewCard("card 2", new ListId("dummy")) };
+			static CardInfo[] newCards = new[] { new CardInfo { Name = "card 1", ListId = new ListId("dummy") }, new CardInfo { Name = "card 2", ListId = new ListId("dummy") } };
 		}
 
 		public class when_the_refresh_button_is_clicked

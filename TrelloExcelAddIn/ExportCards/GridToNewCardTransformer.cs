@@ -8,7 +8,7 @@ namespace TrelloExcelAddIn
 {
 	public class GridToNewCardTransformer : ICreateNewCards
 	{
-		public IEnumerable<NewCard> CreateCards(IListId list)
+		public IEnumerable<CardInfo> CreateCards(IListId list)
 		{
 			var grid = new Grid();
 
@@ -18,10 +18,10 @@ namespace TrelloExcelAddIn
 			return CreateCards(grid, list);
 		}
 
-		public IEnumerable<NewCard> CreateCards(Grid grid, IListId list)
+		public IEnumerable<CardInfo> CreateCards(Grid grid, IListId list)
 		{
 			if(!grid.Cells.Any())
-				return Enumerable.Empty<NewCard>();
+				return Enumerable.Empty<CardInfo>();
 
 			var leftMostColumn = grid.Cells.Min(c => c.Column);
 
@@ -30,7 +30,7 @@ namespace TrelloExcelAddIn
 				.Where(c => c.Any(x => x.Column == leftMostColumn))
 				.Select(c =>
 				{
-					var newCard = new NewCard(c.First().Value, list);
+					var newCard = new CardInfo { Name = c.First().Value, ListId = list };
 					if (c.Count() > 1)
 						newCard.Desc = c.ElementAt(1).Value;
 					return newCard;

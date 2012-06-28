@@ -34,6 +34,10 @@ namespace Tests.Specs
 
 			It should_leave_the_description_empty = () =>
 				createdCards.First().Desc.ShouldBeNull();
+
+			It should_leave_the_due_date_empty = () =>
+				createdCards.First().Due.ShouldBeNull();
+
 		}
 
 		public class when_grid_has_two_cells_in_the_same_column
@@ -119,7 +123,7 @@ namespace Tests.Specs
 			};
 
 			It should_set_the_list_for_the_card = () =>
-				createdCards.First().IdList.GetListId().ShouldEqual(listId);
+				createdCards.First().ListId.GetListId().ShouldEqual(listId);
 		}
 	}
 
@@ -128,7 +132,7 @@ namespace Tests.Specs
 		protected static GridToNewCardTransformer transformer;
 		protected static Grid grid;
 		protected static string listId;
-		protected static IEnumerable<NewCard> createdCards;
+		protected static IEnumerable<CardInfo> createdCards;
 
 		Establish context = () =>
 		{

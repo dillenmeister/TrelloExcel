@@ -95,11 +95,11 @@ namespace TrelloExcelAddIn
 			exportCardsCancellationTokenSource.Cancel();
 		}
 
-		private bool ExportCards(IEnumerable<NewCard> cards)
+		private bool ExportCards(IEnumerable<CardInfo> cards)
 		{
 			var totalCount = cards.Count();
 			var currentCard = 0;
-			foreach (var newCard in cards)
+			foreach (var cardInfo in cards)
 			{
 				if (exportCardsCancellationTokenSource.Token.IsCancellationRequested)
 					return false;
@@ -107,6 +107,7 @@ namespace TrelloExcelAddIn
 				Task.Factory.StartNew(() => view.ShowStatusMessage(@"Adding card {0}/{1}.", ++currentCard, totalCount),
 					CancellationToken.None, TaskCreationOptions.None, taskScheduler);
 
+				var newCard = new NewCard(cardInfo.Name, cardInfo.ListId) { Desc = cardInfo.Desc };
 				trello.Cards.Add(newCard);
 			}
 
