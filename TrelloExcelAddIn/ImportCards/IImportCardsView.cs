@@ -18,5 +18,6 @@ namespace TrelloExcelAddIn
         event EventHandler ListItemCheckedChanged;
         event EventHandler ImportCardsButtonWasClicked;
         void ShowStatusMessage(string message);
+        void ShowErrorMessage(string message);
     }
 }

@@ -44,6 +44,12 @@ namespace TrelloExcelAddIn
             trello.Async.Cards.ForBoard(view.SelectedBoard, BoardCardFilter.Open)
                 .ContinueWith(t =>
                 {
+                    if(t.Exception != null)
+                    {
+                        HandleException(t.Exception);
+                        return;
+                    }
+
                     // We should only import cards in lists the user selected
                     var cardsToImport = GetCardsForSelectedLists(t.Result);
                     if (!cardsToImport.Any())
@@ -149,6 +155,17 @@ namespace TrelloExcelAddIn
 
         private void HandleException(AggregateException exception)
         {
+            view.EnableSelectionOfLists = false;
+            view.EnableSelectionOfBoards = false;
+            view.DisplayBoards(Enumerable.Empty<BoardViewModel>());
+            view.DisplayLists(Enumerable.Empty<List>());
+
+            if (exception.InnerException is TrelloUnauthorizedException)
+                messageBus.Publish(new TrelloWasUnauthorizedEvent(exception.InnerException.Message));
+            else
+                view.ShowErrorMessage(exception.InnerException.Message);
+
+            view.ShowStatusMessage("");
         }
     }
 }

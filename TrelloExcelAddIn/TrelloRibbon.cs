@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Forms;
 using Microsoft.Office.Tools.Ribbon;
 using TrelloNet;
 
@@ -31,6 +33,8 @@ namespace TrelloExcelAddIn
                 ImportCardsButton.Enabled = false;
 				LoginSplitButton.Visible = true;
 				LoggedInButton.Visible = false;
+
+			    MessageBox.Show(string.Format("Unauthorized: {0}{1}Your login token has probably expired. Please login again.", @event.Message, Environment.NewLine));
 			});
 
 			messageBus.Subscribe<TrelloWasAuthorizedEvent>(@event =>

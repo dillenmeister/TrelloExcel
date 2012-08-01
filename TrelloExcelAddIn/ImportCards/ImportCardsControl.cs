@@ -26,6 +26,11 @@ namespace TrelloExcelAddIn
             StatusLabel.Text = message;
         }
 
+        public void ShowErrorMessage(string message)
+        {
+            MessageBox.Show(message);
+        }
+
         public void DisplayBoards(IEnumerable<BoardViewModel> boards)
         {
             var boardViewModels = boards.ToList();

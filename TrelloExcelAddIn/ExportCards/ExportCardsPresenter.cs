@@ -76,8 +76,14 @@ namespace TrelloExcelAddIn
 
 			var cards = transformer.CreateCards(view.SelectedList);
 			var addCardsTask = Task.Factory.StartNew(() => ExportCards(cards), exportCardsCancellationTokenSource.Token);
-			addCardsTask.ContinueWith(task =>
+			addCardsTask.ContinueWith(t =>
 			{
+                if (t.Exception != null)
+                {
+                    HandleException(t.Exception);
+                    return;
+                }
+
 				view.ShowStatusMessage(exportCardsCancellationTokenSource.IsCancellationRequested ? "Canceled!" : "All cards added!");
 				exportCardsCancellationTokenSource = new CancellationTokenSource();
 
@@ -163,13 +169,16 @@ namespace TrelloExcelAddIn
 		{
 			view.EnableSelectionOfLists = false;
 			view.EnableSelectionOfBoards = false;
+		    view.HideCancelButton = true;
 			view.DisplayBoards(Enumerable.Empty<BoardViewModel>());
 			view.DisplayLists(Enumerable.Empty<List>());
+            view.ShowStatusMessage("");
 
 			if (exception.InnerException is TrelloUnauthorizedException)
-				messageBus.Publish(new TrelloWasUnauthorizedEvent());
+				messageBus.Publish(new TrelloWasUnauthorizedEvent(exception.InnerException.Message));
+            else
+			    view.ShowErrorMessage(exception.InnerException.Message);
 
-			view.ShowErrorMessage(exception.InnerException.Message);
 		}
 	}
 }
