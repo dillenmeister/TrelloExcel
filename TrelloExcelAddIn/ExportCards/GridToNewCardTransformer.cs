@@ -48,6 +48,8 @@ namespace TrelloExcelAddIn
 		private static Range GetSelectedRange()
 		{
 			var selectedRange = Globals.ThisAddIn.Application.ActiveWindow.RangeSelection;
+            if (selectedRange.Count == 1)
+                return selectedRange;
 
 			var formulas = GetSpecialCells(selectedRange, XlCellType.xlCellTypeFormulas);
 			var constants = GetSpecialCells(selectedRange, XlCellType.xlCellTypeConstants);
