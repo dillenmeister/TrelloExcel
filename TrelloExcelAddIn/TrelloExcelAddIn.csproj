@@ -149,8 +149,9 @@
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="TrelloNet">
-      <HintPath>..\packages\TrelloNet.0.5.3-beta\lib\net40-Client\TrelloNet.dll</HintPath>
+    <Reference Include="TrelloNet, Version=0.5.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\TrelloNet.0.5.4\lib\net40-Client\TrelloNet.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
