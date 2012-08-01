@@ -88,9 +88,6 @@ namespace Tests.Specs
 				Thread.Sleep(30);
 			};
 
-			It should_show_an_error_message = () =>
-				A.CallTo(() => view.ShowErrorMessage("error")).MustHaveHappened();
-
 			It should_disable_selection_of_boards = () =>
 				view.EnableSelectionOfBoards.ShouldBeFalse();
 
