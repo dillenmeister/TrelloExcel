@@ -220,6 +220,7 @@
       <DependentUpon>ImportCardsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="ImportCards\ImportCardsPresenter.cs" />
+    <Compile Include="LinqExtensions.cs" />
     <Compile Include="MessageBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

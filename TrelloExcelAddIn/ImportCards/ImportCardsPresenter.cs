@@ -40,19 +40,50 @@ namespace TrelloExcelAddIn
             trello.Async.Cards.ForBoard(view.SelectedBoard, BoardCardFilter.Open)
                 .ContinueWith(t =>
                 {
-                    var cards = t.Result.Where(c => view.CheckedLists.Select(cl => cl.Id).Contains(c.IdList)).ToList();
-                    var rangeThatFitsAllCards = Globals.ThisAddIn.Application.ActiveWindow.RangeSelection.Resize[cards.Count(), 3];
-                    var address = rangeThatFitsAllCards.AddressLocal;                    
-                    rangeThatFitsAllCards.Copy();
-                    Globals.ThisAddIn.Application.CutCopyMode = XlCutCopyMode.xlCopy;     
-                    rangeThatFitsAllCards.Insert(XlInsertShiftDirection.xlShiftDown);
-                    var before = Globals.ThisAddIn.Application.ActiveSheet.Range(address).Resize[cards.Count(), 3];
-                    
-                    before.Value2 = cards.Select(c => new[] { c.Name, c.Desc, null }).ToArray().ToMultidimensionalArray();
-                    before.Select();
-                    before.Columns.AutoFit();
+                    // We should only import cards in lists the user selected
+                    var cardsToImport = GetCardsForSelectedLists(t.Result);
+
+                    // Create a range based on the current selection. Rows = number of cards, Columns = 3 (to fit name, desc and due date)
+                    var rangeThatFitsAllCards = ResizeToFitAllCards(Globals.ThisAddIn.Application.ActiveWindow.RangeSelection, cardsToImport);
+
+                    // Store the address of this range for later user
+                    var addressToFirstCell = rangeThatFitsAllCards.AddressLocal;
+
+                    // Kind of copy/paste this range
+                    InsertRange(rangeThatFitsAllCards);
+
+                    // The rangeThatFitsAllCards was change after the InsertRange call, so create a new range based on addressToFirstCell
+                    rangeThatFitsAllCards = ResizeToFitAllCards(Globals.ThisAddIn.Application.ActiveSheet.Range(addressToFirstCell), cardsToImport);
+
+                    // Set the values of the cells to the cards name, desc and due date
+                    UpdateRangeWithCardsToImport(rangeThatFitsAllCards, cardsToImport);
                 });
-        }      
+        }
+
+        private static void UpdateRangeWithCardsToImport(Range rangeThatFitsAllCards, IEnumerable<Card> cardsToImport)
+        {
+            rangeThatFitsAllCards.Value2 = cardsToImport.Select(c => new [] { c.Name, c.Desc, c.Due.ToString() }).ToArray().ToMultidimensionalArray();
+            rangeThatFitsAllCards.Select();
+            rangeThatFitsAllCards.Columns.AutoFit();            
+        }
+
+        private static void InsertRange(Range rangeThatFitsAllCards)
+        {
+            rangeThatFitsAllCards.Copy();
+            Globals.ThisAddIn.Application.CutCopyMode = XlCutCopyMode.xlCopy;
+            rangeThatFitsAllCards.Insert(XlInsertShiftDirection.xlShiftDown);
+        }
+
+        private static Range ResizeToFitAllCards(Range rangeSelection, IEnumerable<Card> cardsToImport)
+        {
+            return rangeSelection.Resize[cardsToImport.Count(), 3];
+        }
+
+        private IEnumerable<Card> GetCardsForSelectedLists(IEnumerable<Card> allCards)
+        {
+            var cards = allCards.Where(c => view.CheckedLists.Select(cl => cl.Id).Contains(c.IdList)).ToList();
+            return cards;
+        }
 
         private void ListItemCheckedChanged(object sender, EventArgs eventArgs)
         {
@@ -101,23 +132,5 @@ namespace TrelloExcelAddIn
         private void HandleException(AggregateException exception)
         {
         }
-    }
-
-    public static class LinqExtensions
-    {
-        public static T[,] ToMultidimensionalArray<T>(this T[][] jaggedArray)
-        {
-            int rows = jaggedArray.Length;
-            int cols = jaggedArray.Max(subArray => subArray.Length);
-            T[,] array = new T[rows, cols];
-            for (int i = 0; i < rows; i++)
-            {
-                for (int j = 0; j < cols; j++)
-                {
-                    array[i, j] = jaggedArray[i][j];
-                }
-            }
-            return array;
-        }      
     }
 }
