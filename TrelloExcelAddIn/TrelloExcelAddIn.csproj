@@ -212,10 +212,19 @@
     <Compile Include="ExportCards\ICreateNewCards.cs" />
     <Compile Include="ExportCards\IExportCardsView.cs" />
     <Compile Include="IMessageBus.cs" />
+    <Compile Include="ImportCards\IImportCardsView.cs" />
+    <Compile Include="ImportCards\ImportCardsControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ImportCards\ImportCardsControl.Designer.cs">
+      <DependentUpon>ImportCardsControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImportCards\ImportCardsPresenter.cs" />
     <Compile Include="MessageBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="TrelloHelper.cs" />
     <Compile Include="TrelloRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -229,6 +238,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ExportCards\ExportCardsControl.resx">
       <DependentUpon>ExportCardsControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImportCards\ImportCardsControl.resx">
+      <DependentUpon>ImportCardsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -9,9 +9,14 @@ namespace TrelloExcelAddIn
 	public partial class ThisAddIn
 	{
 		public Trello Trello { get; private set; }
+
 		public ExportCardsPresenter ExportCardsPresenter { get; private set; }
+        public ImportCardsPresenter ImportCardsPresenter { get; private set; }
 		public AuthorizePresenter AuthorizePresenter { get; set; }
+
 		public CustomTaskPane ExportCardsTaskPane { get; private set; }
+        public CustomTaskPane ImportCardsTaskPane { get; private set; }
+
 		public TaskScheduler TaskScheduler { get; private set; }
 		public MessageBus MessageBus { get; private set; }
 
@@ -21,15 +26,21 @@ namespace TrelloExcelAddIn
 			MessageBus = new MessageBus();
 
 			var exportCardsControl = new ExportCardsControl();
+            var importCardsControl = new ImportCardsControl();
 			var authorizeForm = new AuthorizationDialog();
 
 			ExportCardsTaskPane = CustomTaskPanes.Add(exportCardsControl, "Export cards to Trello");
 			ExportCardsTaskPane.Width = 300;
 			ExportCardsTaskPane.DockPositionRestrict = MsoCTPDockPositionRestrict.msoCTPDockPositionRestrictNoHorizontal;
 
+            ImportCardsTaskPane = CustomTaskPanes.Add(importCardsControl, "Import cards from Trello");
+            ImportCardsTaskPane.Width = 300;
+            ImportCardsTaskPane.DockPositionRestrict = MsoCTPDockPositionRestrict.msoCTPDockPositionRestrictNoHorizontal;
+
 			TaskScheduler = TaskScheduler.FromCurrentSynchronizationContext();
 
 			ExportCardsPresenter = new ExportCardsPresenter(exportCardsControl, Trello, new GridToNewCardTransformer(), TaskScheduler, MessageBus);
+		    ImportCardsPresenter = new ImportCardsPresenter(importCardsControl, MessageBus, Trello, TaskScheduler);
 			AuthorizePresenter = new AuthorizePresenter(authorizeForm, Trello, MessageBus);
 
 			Globals.Ribbons.TrelloRibbon.SetMessageBus(MessageBus);

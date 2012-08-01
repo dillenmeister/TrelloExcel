@@ -14,6 +14,7 @@ namespace TrelloExcelAddIn
 		private readonly IMessageBus messageBus;
 		private readonly ITrello trello;
 		private readonly ICreateNewCards transformer;
+	    private readonly TrelloHelper trelloHelper;
 		private CancellationTokenSource exportCardsCancellationTokenSource;
 
 		public ExportCardsPresenter(IExportCardsView view, ITrello trello, ICreateNewCards transformer, TaskScheduler taskScheduler, IMessageBus messageBus)
@@ -23,6 +24,7 @@ namespace TrelloExcelAddIn
 			this.messageBus = messageBus;
 			this.trello = trello;
 			this.transformer = transformer;
+            trelloHelper = new TrelloHelper(trello);
 
 			exportCardsCancellationTokenSource = new CancellationTokenSource();
 
@@ -120,40 +122,7 @@ namespace TrelloExcelAddIn
 		private void FetchAndDisplayBoards()
 		{
 			DisableStuff();
-			Task.Factory.StartNew(() =>
-			{
-				// <WTF>
-
-				var boards = trello.Boards.ForMe(BoardFilter.Open);
-
-				var organizations = boards
-					.Select(b => b.IdOrganization)
-					.Where(s => !string.IsNullOrEmpty(s))
-					.Distinct()
-					.Select(orgId =>
-					{
-						try
-						{
-							return trello.Organizations.WithId(orgId);
-						}
-						catch (TrelloUnauthorizedException)
-						{
-							return null;
-						}
-					})
-					.Where(o => o != null)
-					.ToDictionary(organization => organization.Id);
-
-				return boards.Select(b =>
-				{
-					var model = new BoardViewModel(b);
-					if (b.IdOrganization != null && organizations.ContainsKey(b.IdOrganization))
-						model.SetOrganizationName(organizations[b.IdOrganization].DisplayName);
-					return model;
-				});
-
-				// </WTF>
-			})
+			Task.Factory.StartNew(() => trelloHelper.FetchBoardViewModelsForMe())
 			.ContinueWith(t =>
 			{
 				if (t.Exception == null)

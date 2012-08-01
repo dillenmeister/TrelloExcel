@@ -28,6 +28,7 @@ namespace TrelloExcelAddIn
 			messageBus.Subscribe<TrelloWasUnauthorizedEvent>(@event =>
 			{
 				ExportCardsButton.Enabled = false;
+                ImportCardsButton.Enabled = false;
 				LoginSplitButton.Visible = true;
 				LoggedInButton.Visible = false;
 			});
@@ -35,6 +36,7 @@ namespace TrelloExcelAddIn
 			messageBus.Subscribe<TrelloWasAuthorizedEvent>(@event =>
 			{
 				ExportCardsButton.Enabled = true;
+                ImportCardsButton.Enabled = true;
 				LoginSplitButton.Visible = false;
 				LoggedInButton.Label = string.Format("Logged in as {0}", @event.Member.Username);
 				LoggedInButton.Visible = true;
@@ -48,5 +50,10 @@ namespace TrelloExcelAddIn
 				expiration = Expiration.Never;
 			Globals.ThisAddIn.AuthorizePresenter.StartAuthorization(expiration);
 		}
+
+        private void ImportCardsButton_Click(object sender, RibbonControlEventArgs e)
+        {
+            Globals.ThisAddIn.ImportCardsTaskPane.Visible = !Globals.ThisAddIn.ImportCardsTaskPane.Visible;
+        }
 	}
 }
