@@ -73,7 +73,7 @@ namespace Tests.Specs
 			It should_enable_export_cards = () =>
 				view.EnableExportCards.ShouldBeTrue();
 
-			static List<List> lists;
+			static List<List> lists = new List<List>();
 		}
 
 		public class when_a_board_is_selected_and_trello_is_not_authenticated
@@ -175,9 +175,7 @@ namespace Tests.Specs
 			};
 
 			It should_refresh_the_list_of_boards = () =>
-				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.Matches(b => b.First().ToString() == "board 1"))).MustHaveHappened();
-
-			static List<Board> boards;
+				A.CallTo(() => view.DisplayBoards(A<IEnumerable<BoardViewModel>>.That.Matches(b => b.First().ToString() == "board 1"))).MustHaveHappened();			
 		}
 	}
 
