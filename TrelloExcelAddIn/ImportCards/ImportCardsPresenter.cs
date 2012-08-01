@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
@@ -37,11 +36,18 @@ namespace TrelloExcelAddIn
 
         private void ImportCardsButtonWasClicked(object sender, EventArgs eventArgs)
         {
+            view.ShowStatusMessage("Importing cards...");
+            view.EnableImport = false;
+            view.EnableSelectionOfBoards = false;
+            view.EnableSelectionOfLists = false;
+
             trello.Async.Cards.ForBoard(view.SelectedBoard, BoardCardFilter.Open)
                 .ContinueWith(t =>
                 {
                     // We should only import cards in lists the user selected
                     var cardsToImport = GetCardsForSelectedLists(t.Result);
+                    if (!cardsToImport.Any())
+                        return;
 
                     // Create a range based on the current selection. Rows = number of cards, Columns = 3 (to fit name, desc and due date)
                     var rangeThatFitsAllCards = ResizeToFitAllCards(Globals.ThisAddIn.Application.ActiveWindow.RangeSelection, cardsToImport);
@@ -57,14 +63,25 @@ namespace TrelloExcelAddIn
 
                     // Set the values of the cells to the cards name, desc and due date
                     UpdateRangeWithCardsToImport(rangeThatFitsAllCards, cardsToImport);
-                });
+
+                    view.ShowStatusMessage("Cards imported!");
+                    view.EnableImport = true;
+                    view.EnableSelectionOfBoards = true;
+                    view.EnableSelectionOfLists = true;
+                }, taskScheduler);
         }
 
-        private static void UpdateRangeWithCardsToImport(Range rangeThatFitsAllCards, IEnumerable<Card> cardsToImport)
+        private void UpdateRangeWithCardsToImport(Range rangeThatFitsAllCards, IEnumerable<Card> cardsToImport)
         {
-            rangeThatFitsAllCards.Value2 = cardsToImport.Select(c => new [] { c.Name, c.Desc, c.Due.ToString() }).ToArray().ToMultidimensionalArray();
+            var cardsToImportWithListName = from c in cardsToImport
+                                            join l in view.CheckedLists on c.IdList equals l.Id into gj
+                                            select new[] { c.Name, c.Desc, c.Due.ToString(), gj.FirstOrDefault() != null ? gj.FirstOrDefault().Name : null };
+
+            var columns = new[] { new[] { "Name", "Description", "Due Date", "List" } };
+
+            rangeThatFitsAllCards.Value2 = columns.Union(cardsToImportWithListName).ToArray().ToMultidimensionalArray();
             rangeThatFitsAllCards.Select();
-            rangeThatFitsAllCards.Columns.AutoFit();            
+            rangeThatFitsAllCards.Columns.AutoFit();
         }
 
         private static void InsertRange(Range rangeThatFitsAllCards)
@@ -76,7 +93,7 @@ namespace TrelloExcelAddIn
 
         private static Range ResizeToFitAllCards(Range rangeSelection, IEnumerable<Card> cardsToImport)
         {
-            return rangeSelection.Resize[cardsToImport.Count(), 3];
+            return rangeSelection.Resize[cardsToImport.Count() + 1, 4];
         }
 
         private IEnumerable<Card> GetCardsForSelectedLists(IEnumerable<Card> allCards)
@@ -99,6 +116,7 @@ namespace TrelloExcelAddIn
                     {
                         view.DisplayLists(t.Result);
                         view.EnableSelectionOfLists = true;
+                        view.EnableImport = false;
                     }
                     else
                     {

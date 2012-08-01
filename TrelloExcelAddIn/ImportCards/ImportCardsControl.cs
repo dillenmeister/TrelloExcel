@@ -21,6 +21,11 @@ namespace TrelloExcelAddIn
         public event EventHandler ListItemCheckedChanged;
         public event EventHandler ImportCardsButtonWasClicked;
 
+        public void ShowStatusMessage(string message)
+        {
+            StatusLabel.Text = message;
+        }
+
         public void DisplayBoards(IEnumerable<BoardViewModel> boards)
         {
             var boardViewModels = boards.ToList();
@@ -60,7 +65,7 @@ namespace TrelloExcelAddIn
         }
 
         public void DisplayLists(IEnumerable<List> lists)
-        {
+        {            
             ListsBox.DataSource = null;
             ListsBox.DataSource = lists;
         }

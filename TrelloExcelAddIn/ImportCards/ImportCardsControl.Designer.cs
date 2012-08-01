@@ -34,11 +34,13 @@
             this.ListsBox = new System.Windows.Forms.CheckedListBox();
             this.BoardsLabel = new System.Windows.Forms.Label();
             this.BoardComboBox = new System.Windows.Forms.ComboBox();
+            this.StatusLabel = new System.Windows.Forms.Label();
             this.ChooseListsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // ChooseListsGroupBox
             // 
+            this.ChooseListsGroupBox.Controls.Add(this.StatusLabel);
             this.ChooseListsGroupBox.Controls.Add(this.ImportCardsButton);
             this.ChooseListsGroupBox.Controls.Add(this.ListsLabel);
             this.ChooseListsGroupBox.Controls.Add(this.ListsBox);
@@ -46,7 +48,7 @@
             this.ChooseListsGroupBox.Controls.Add(this.BoardComboBox);
             this.ChooseListsGroupBox.Location = new System.Drawing.Point(8, 8);
             this.ChooseListsGroupBox.Name = "ChooseListsGroupBox";
-            this.ChooseListsGroupBox.Size = new System.Drawing.Size(256, 206);
+            this.ChooseListsGroupBox.Size = new System.Drawing.Size(256, 222);
             this.ChooseListsGroupBox.TabIndex = 0;
             this.ChooseListsGroupBox.TabStop = false;
             this.ChooseListsGroupBox.Text = "Import cards";
@@ -54,7 +56,7 @@
             // ImportCardsButton
             // 
             this.ImportCardsButton.Enabled = false;
-            this.ImportCardsButton.Location = new System.Drawing.Point(138, 178);
+            this.ImportCardsButton.Location = new System.Drawing.Point(138, 171);
             this.ImportCardsButton.Name = "ImportCardsButton";
             this.ImportCardsButton.Size = new System.Drawing.Size(100, 22);
             this.ImportCardsButton.TabIndex = 14;
@@ -101,13 +103,21 @@
             this.BoardComboBox.Size = new System.Drawing.Size(194, 21);
             this.BoardComboBox.TabIndex = 10;
             // 
+            // StatusLabel
+            // 
+            this.StatusLabel.AutoSize = true;
+            this.StatusLabel.Location = new System.Drawing.Point(6, 196);
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(0, 13);
+            this.StatusLabel.TabIndex = 15;
+            // 
             // ImportCardsControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.ChooseListsGroupBox);
             this.Name = "ImportCardsControl";
-            this.Size = new System.Drawing.Size(273, 221);
+            this.Size = new System.Drawing.Size(273, 243);
             this.ChooseListsGroupBox.ResumeLayout(false);
             this.ChooseListsGroupBox.PerformLayout();
             this.ResumeLayout(false);
@@ -122,5 +132,6 @@
         private System.Windows.Forms.Label ListsLabel;
         private System.Windows.Forms.CheckedListBox ListsBox;
         private System.Windows.Forms.Button ImportCardsButton;
+        private System.Windows.Forms.Label StatusLabel;
     }
 }
