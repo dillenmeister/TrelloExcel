@@ -24,12 +24,13 @@ namespace TrelloExcelAddIn
 				return Enumerable.Empty<CardInfo>();
 
 			var leftMostColumn = grid.Cells.Min(c => c.Column);
+            
 
-			return grid.Cells
+			return grid.Cells.OrderBy(c => c.Row).ThenBy(c => c.Column)        
 				.GroupBy(c => c.Row)
-				.Where(c => c.Any(x => x.Column == leftMostColumn))
+				.Where(c => c.Any(x => x.Column == leftMostColumn))                
 				.Select(c =>
-				{
+				{                                        
 					var newCard = new CardInfo { Name = c.First().Value, ListId = list };
 					var skipFirstColumn = c.Skip(1);
 
