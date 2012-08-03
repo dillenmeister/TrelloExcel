@@ -32,6 +32,12 @@ namespace TrelloExcelAddIn
             view.BoardWasSelected += BoardWasSelected;
             view.ListItemCheckedChanged += ListItemCheckedChanged;
             view.ImportCardsButtonWasClicked += ImportCardsButtonWasClicked;
+            view.RefreshButtonWasClicked += RefreshButtonWasClicked;
+        }
+
+        private void RefreshButtonWasClicked(object sender, EventArgs eventArgs)
+        {
+            FetchAndDisplayBoards();
         }
 
         private void ImportCardsButtonWasClicked(object sender, EventArgs eventArgs)
@@ -54,8 +60,8 @@ namespace TrelloExcelAddIn
                     var cardsToImport = GetCardsForSelectedLists(t.Result, view.FieldsToInclude);
 
                     // Create a range based on the current selection. Rows = number of cards, Columns = 4 (to fit name, desc, list and due date)
-                    var numberOfRows = cardsToImport.GetUpperBound(0);
-                    int numberOfColumns = view.FieldsToInclude.Count();
+                    var numberOfRows = cardsToImport.GetUpperBound(0) + 1;
+                    var numberOfColumns = view.FieldsToInclude.Count();
                     var rangeThatFitsAllCards = ResizeToFitAllCards(Globals.ThisAddIn.Application.ActiveWindow.RangeSelection, numberOfRows, numberOfColumns);
 
                     // Store the address of this range for later user
@@ -70,7 +76,7 @@ namespace TrelloExcelAddIn
                     // Set the values of the cells to the cards name, desc and due date
                     UpdateRangeWithCardsToImport(rangeThatFitsAllCards, cardsToImport);
 
-                    view.ShowStatusMessage("Cards imported!");
+                    view.ShowStatusMessage(string.Format("{0} cards imported!", numberOfRows - 1));
                     view.EnableImport = true;
                     view.EnableSelectionOfBoards = true;
                     view.EnableSelectionOfLists = true;
@@ -154,16 +160,22 @@ namespace TrelloExcelAddIn
 
         private void HandleTrelloWasUnauthorized()
         {
-            view.EnableSelectionOfLists = false;
-            view.EnableSelectionOfBoards = false;
-            view.EnableImport = false;
+            DisableStuff();
             view.DisplayBoards(Enumerable.Empty<BoardViewModel>());
             view.DisplayLists(Enumerable.Empty<List>());
             view.ShowStatusMessage("");
         }
 
+        private void DisableStuff()
+        {
+            view.EnableSelectionOfLists = false;
+            view.EnableSelectionOfBoards = false;
+            view.EnableImport = false;
+        }
+
         private void FetchAndDisplayBoards()
         {
+            DisableStuff();
             Task.Factory.StartNew(() => trelloHelper.FetchBoardViewModelsForMe())
             .ContinueWith(t =>
             {

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.ChooseListsGroupBox = new System.Windows.Forms.GroupBox();
+            this.RefreshButton = new System.Windows.Forms.Button();
             this.StatusLabel = new System.Windows.Forms.Label();
             this.ImportCardsButton = new System.Windows.Forms.Button();
             this.ListsLabel = new System.Windows.Forms.Label();
@@ -47,6 +48,7 @@
             // 
             // ChooseListsGroupBox
             // 
+            this.ChooseListsGroupBox.Controls.Add(this.RefreshButton);
             this.ChooseListsGroupBox.Controls.Add(this.StatusLabel);
             this.ChooseListsGroupBox.Controls.Add(this.ImportCardsButton);
             this.ChooseListsGroupBox.Controls.Add(this.ListsLabel);
@@ -60,6 +62,15 @@
             this.ChooseListsGroupBox.TabStop = false;
             this.ChooseListsGroupBox.Text = "3. Choose from which board and lists to import";
             // 
+            // RefreshButton
+            // 
+            this.RefreshButton.Location = new System.Drawing.Point(38, 170);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(100, 22);
+            this.RefreshButton.TabIndex = 16;
+            this.RefreshButton.Text = "Refresh";
+            this.RefreshButton.UseVisualStyleBackColor = true;
+            // 
             // StatusLabel
             // 
             this.StatusLabel.AutoSize = true;
@@ -72,7 +83,7 @@
             // ImportCardsButton
             // 
             this.ImportCardsButton.Enabled = false;
-            this.ImportCardsButton.Location = new System.Drawing.Point(138, 171);
+            this.ImportCardsButton.Location = new System.Drawing.Point(138, 170);
             this.ImportCardsButton.Name = "ImportCardsButton";
             this.ImportCardsButton.Size = new System.Drawing.Size(100, 22);
             this.ImportCardsButton.TabIndex = 14;
@@ -207,5 +218,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckedListBox FieldsToIncludeListBox;
+        private System.Windows.Forms.Button RefreshButton;
     }
 }
