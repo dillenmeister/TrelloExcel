@@ -65,7 +65,7 @@
             // 
             // LoginSplitButton
             // 
-            this.LoginSplitButton.Image = global::TrelloExcelAddIn.Properties.Resources._157_GetPermission_48x48_72;
+            this.LoginSplitButton.Image = global::TrelloExcelAddIn.Properties.Resources.s40;
             this.LoginSplitButton.Items.Add(this.LoginExpireOneHourButton);
             this.LoginSplitButton.Items.Add(this.LoginExpireOneDayButton);
             this.LoginSplitButton.Items.Add(this.LoginExpire30DaysButton);
@@ -109,7 +109,7 @@
             // LoggedInButton
             // 
             this.LoggedInButton.Enabled = false;
-            this.LoggedInButton.Image = global::TrelloExcelAddIn.Properties.Resources._157_GetPermission_48x48_72;
+            this.LoggedInButton.Image = global::TrelloExcelAddIn.Properties.Resources.s40;
             this.LoggedInButton.Label = "Not logged in";
             this.LoggedInButton.Name = "LoggedInButton";
             this.LoggedInButton.ShowImage = true;
@@ -118,7 +118,6 @@
             // ExportCardsButton
             // 
             this.ExportCardsButton.Enabled = false;
-            this.ExportCardsButton.Image = global::TrelloExcelAddIn.Properties.Resources.s40;
             this.ExportCardsButton.Label = "Export cards";
             this.ExportCardsButton.Name = "ExportCardsButton";
             this.ExportCardsButton.ShowImage = true;
@@ -127,7 +126,6 @@
             // ImportCardsButton
             // 
             this.ImportCardsButton.Enabled = false;
-            this.ImportCardsButton.Image = global::TrelloExcelAddIn.Properties.Resources.s40;
             this.ImportCardsButton.Label = "Import cards";
             this.ImportCardsButton.Name = "ImportCardsButton";
             this.ImportCardsButton.ShowImage = true;
