@@ -121,6 +121,7 @@
             // 
             // ListComboBox
             // 
+            this.ListComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ListComboBox.FormattingEnabled = true;
             this.ListComboBox.Location = new System.Drawing.Point(43, 54);
             this.ListComboBox.Name = "ListComboBox";
@@ -139,6 +140,7 @@
             // 
             // BoardComboBox
             // 
+            this.BoardComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.BoardComboBox.FormattingEnabled = true;
             this.BoardComboBox.Location = new System.Drawing.Point(43, 24);
             this.BoardComboBox.Name = "BoardComboBox";
