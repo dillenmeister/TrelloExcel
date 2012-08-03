@@ -125,7 +125,7 @@ namespace Tests.Specs
 				A.CallTo(() => view.ShowStatusMessage("Adding card {0}/{1}.", A<object[]>._)).MustHaveHappened(Repeated.Exactly.Twice);
 
 			It should_display_a_status_message_when_all_cards_are_added = () =>
-				A.CallTo(() => view.ShowStatusMessage("All cards added!", A<object[]>._)).MustHaveHappened();
+				A.CallTo(() => view.ShowStatusMessage("2 card(s) added!", A<object[]>._)).MustHaveHappened();
 
 			static CardInfo[] newCards = new[] 
 			{ 
