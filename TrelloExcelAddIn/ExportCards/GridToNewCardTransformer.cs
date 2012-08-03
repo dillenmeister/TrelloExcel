@@ -12,7 +12,12 @@ namespace TrelloExcelAddIn
 		{
 			var grid = new Grid();
 
-			foreach (Range cell in GetSelectedRange())			
+		    var selectedRange = GetSelectedRange();
+
+            if(selectedRange == null)
+                return Enumerable.Empty<CardInfo>();
+
+		    foreach (Range cell in selectedRange)			
 				grid.AddCell(cell.Column, cell.Row, Convert.ToString(cell.Value), cell.Value.GetType());			
 
 			return CreateCards(grid, list);
@@ -49,8 +54,6 @@ namespace TrelloExcelAddIn
 		private static Range GetSelectedRange()
 		{
 			var selectedRange = Globals.ThisAddIn.Application.ActiveWindow.RangeSelection;
-            if (selectedRange.Count == 1)
-                return selectedRange;
 
 			var formulas = GetSpecialCells(selectedRange, XlCellType.xlCellTypeFormulas);
 			var constants = GetSpecialCells(selectedRange, XlCellType.xlCellTypeConstants);

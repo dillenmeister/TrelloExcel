@@ -95,7 +95,7 @@ namespace TrelloExcelAddIn
 
 		public void ShowErrorMessage(string message)
 		{
-			MessageBox.Show(message);
+			MessageBox.Show(message, "Message");
 		}
 	}
 }

@@ -76,7 +76,7 @@ namespace TrelloExcelAddIn
                     // Set the values of the cells to the cards name, desc and due date
                     UpdateRangeWithCardsToImport(rangeThatFitsAllCards, cardsToImport);
 
-                    view.ShowStatusMessage(string.Format("{0} cards imported!", numberOfRows - 1));
+                    view.ShowStatusMessage(string.Format("{0} card(s) imported!", numberOfRows - 1));
                     view.EnableImport = true;
                     view.EnableSelectionOfBoards = true;
                     view.EnableSelectionOfLists = true;

@@ -86,6 +86,7 @@ namespace TrelloExcelAddIn
 			DisableStuff();
 
 			var cards = transformer.CreateCards(view.SelectedList);
+
 			var addCardsTask = Task.Factory.StartNew(() => ExportCards(cards), exportCardsCancellationTokenSource.Token);
 			addCardsTask.ContinueWith(t =>
 			{
@@ -95,7 +96,7 @@ namespace TrelloExcelAddIn
                     return;
                 }
 
-				view.ShowStatusMessage(exportCardsCancellationTokenSource.IsCancellationRequested ? "Canceled!" : "All cards added!");
+				view.ShowStatusMessage(exportCardsCancellationTokenSource.IsCancellationRequested ? "Canceled!" : string.Format("{0} card(s) added!", cards.Count()));
 				exportCardsCancellationTokenSource = new CancellationTokenSource();
 
 				EnableStuff();
