@@ -49,14 +49,14 @@ namespace TrelloExcelAddIn
                         HandleException(t.Exception);
                         return;
                     }
-
+                    
                     // We should only import cards in lists the user selected
-                    var cardsToImport = GetCardsForSelectedLists(t.Result);
-                    if (!cardsToImport.Any())
-                        return;
+                    var cardsToImport = GetCardsForSelectedLists(t.Result, view.FieldsToInclude);
 
-                    // Create a range based on the current selection. Rows = number of cards, Columns = 3 (to fit name, desc and due date)
-                    var rangeThatFitsAllCards = ResizeToFitAllCards(Globals.ThisAddIn.Application.ActiveWindow.RangeSelection, cardsToImport);
+                    // Create a range based on the current selection. Rows = number of cards, Columns = 4 (to fit name, desc, list and due date)
+                    var numberOfRows = cardsToImport.GetUpperBound(0);
+                    int numberOfColumns = view.FieldsToInclude.Count();
+                    var rangeThatFitsAllCards = ResizeToFitAllCards(Globals.ThisAddIn.Application.ActiveWindow.RangeSelection, numberOfRows, numberOfColumns);
 
                     // Store the address of this range for later user
                     var addressToFirstCell = rangeThatFitsAllCards.AddressLocal;
@@ -65,7 +65,7 @@ namespace TrelloExcelAddIn
                     InsertRange(rangeThatFitsAllCards);
 
                     // The rangeThatFitsAllCards was change after the InsertRange call, so create a new range based on addressToFirstCell
-                    rangeThatFitsAllCards = ResizeToFitAllCards(Globals.ThisAddIn.Application.ActiveSheet.Range(addressToFirstCell), cardsToImport);
+                    rangeThatFitsAllCards = ResizeToFitAllCards(Globals.ThisAddIn.Application.ActiveSheet.Range(addressToFirstCell), numberOfRows, numberOfColumns);
 
                     // Set the values of the cells to the cards name, desc and due date
                     UpdateRangeWithCardsToImport(rangeThatFitsAllCards, cardsToImport);
@@ -77,15 +77,9 @@ namespace TrelloExcelAddIn
                 }, taskScheduler);
         }
 
-        private void UpdateRangeWithCardsToImport(Range rangeThatFitsAllCards, IEnumerable<Card> cardsToImport)
+        private void UpdateRangeWithCardsToImport(Range rangeThatFitsAllCards, string[,] cardsToImport)
         {
-            var cardsToImportWithListName = from c in cardsToImport
-                                            join l in view.CheckedLists on c.IdList equals l.Id into gj
-                                            select new[] { c.Name, c.Desc, c.Due.ToString(), gj.FirstOrDefault() != null ? gj.FirstOrDefault().Name : null };
-
-            var columns = new[] { new[] { "Name", "Description", "Due Date", "List" } };
-
-            rangeThatFitsAllCards.Value2 = columns.Union(cardsToImportWithListName).ToArray().ToMultidimensionalArray();
+            rangeThatFitsAllCards.Value2 = cardsToImport;
             rangeThatFitsAllCards.Select();
             rangeThatFitsAllCards.Columns.AutoFit();
         }
@@ -97,15 +91,36 @@ namespace TrelloExcelAddIn
             rangeThatFitsAllCards.Insert(XlInsertShiftDirection.xlShiftDown);
         }
 
-        private static Range ResizeToFitAllCards(Range rangeSelection, IEnumerable<Card> cardsToImport)
+        private static Range ResizeToFitAllCards(Range rangeSelection, int numberOfRows, int numberOfColumns)
         {
-            return rangeSelection.Resize[cardsToImport.Count() + 1, 4];
+            return rangeSelection.Resize[numberOfRows, numberOfColumns];
         }
 
-        private IEnumerable<Card> GetCardsForSelectedLists(IEnumerable<Card> allCards)
-        {
+        private string[,] GetCardsForSelectedLists(IEnumerable<Card> allCards, IEnumerable<string> fieldsToInclude)
+        {            
             var cards = allCards.Where(c => view.CheckedLists.Select(cl => cl.Id).Contains(c.IdList)).ToList();
-            return cards;
+
+            var cardsToImportWithListName = from c in cards
+                                            join l in view.CheckedLists on c.IdList equals l.Id into gj
+                                            select CreateStringArrayFromCard(c, gj, fieldsToInclude);
+
+            return new[] { fieldsToInclude.ToArray() }.Union(cardsToImportWithListName).ToArray().ToMultidimensionalArray();
+        }
+
+        private static string[] CreateStringArrayFromCard(Card card, IEnumerable<List> lists, IEnumerable<string> fieldsToInclude)
+        {
+            var list = new List<string>();
+
+            if(fieldsToInclude.Contains("Name"))
+                list.Add(card.Name);
+            if (fieldsToInclude.Contains("Description"))
+                list.Add(card.Desc);
+            if (fieldsToInclude.Contains("Due Date"))
+                list.Add(card.Due.ToString());
+            if (fieldsToInclude.Contains("List"))
+                list.Add(lists.FirstOrDefault() != null ? lists.FirstOrDefault().Name : null);
+
+            return list.ToArray();
         }
 
         private void ListItemCheckedChanged(object sender, EventArgs eventArgs)

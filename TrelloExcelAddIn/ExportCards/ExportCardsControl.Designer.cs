@@ -53,7 +53,7 @@
             this.AddCardsGroupBox.Controls.Add(this.ListComboBox);
             this.AddCardsGroupBox.Controls.Add(this.label1);
             this.AddCardsGroupBox.Controls.Add(this.BoardComboBox);
-            this.AddCardsGroupBox.Location = new System.Drawing.Point(8, 96);
+            this.AddCardsGroupBox.Location = new System.Drawing.Point(8, 109);
             this.AddCardsGroupBox.Name = "AddCardsGroupBox";
             this.AddCardsGroupBox.Size = new System.Drawing.Size(256, 134);
             this.AddCardsGroupBox.TabIndex = 11;
@@ -151,21 +151,21 @@
             this.label3.Location = new System.Drawing.Point(3, 16);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(4);
-            this.label3.Size = new System.Drawing.Size(250, 63);
+            this.label3.Size = new System.Drawing.Size(250, 76);
             this.label3.TabIndex = 12;
             this.label3.Text = "Select the rows that you want to export to cards in Trello. The first column will" +
     " be the card name. The second and third columns will be the description and/or t" +
-    "he due date (if it\'s a date).";
+    "he due date (if it\'s a date).\r\n";
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(8, 8);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(256, 82);
+            this.groupBox1.Size = new System.Drawing.Size(256, 95);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "1. Select rows";
+            this.groupBox1.Text = "1. Select rows to export";
             // 
             // ExportCardsControl
             // 
@@ -174,7 +174,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.AddCardsGroupBox);
             this.Name = "ExportCardsControl";
-            this.Size = new System.Drawing.Size(273, 246);
+            this.Size = new System.Drawing.Size(273, 252);
             this.AddCardsGroupBox.ResumeLayout(false);
             this.AddCardsGroupBox.PerformLayout();
             this.panel1.ResumeLayout(false);

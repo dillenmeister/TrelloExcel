@@ -12,6 +12,11 @@ namespace TrelloExcelAddIn
         {
             InitializeComponent();
 
+            for (var i = 0; i < FieldsToIncludeListBox.Items.Count; i++)
+                FieldsToIncludeListBox.SetItemChecked(i, true);
+
+            StatusLabel.Text = "";
+
             BoardComboBox.SelectedIndexChanged += (sender, args) => BoardWasSelected(this, null);
             ListsBox.ItemCheck += (sender, args) => BeginInvoke((MethodInvoker)(() => ListItemCheckedChanged(this, null)));
             ImportCardsButton.Click += (sender, args) => ImportCardsButtonWasClicked(this, null);
@@ -69,10 +74,18 @@ namespace TrelloExcelAddIn
             get { return ListsBox.CheckedItems.Cast<List>(); }
         }
 
+        public IEnumerable<string> FieldsToInclude
+        {
+            get { return FieldsToIncludeListBox.CheckedItems.Cast<string>(); }
+        }
+
         public void DisplayLists(IEnumerable<List> lists)
-        {            
-            ListsBox.DataSource = null;
+        {
+            ListsBox.DataSource = null;         
             ListsBox.DataSource = lists;
+
+            for (var i = 0; i < ListsBox.Items.Count; i++ )
+                ListsBox.SetItemChecked(i, true);
         }
     }
 }

@@ -14,6 +14,7 @@ namespace TrelloExcelAddIn
         bool EnableSelectionOfLists { get; set; }
         bool EnableImport { get; set; }
         IEnumerable<List> CheckedLists { get; }
+        IEnumerable<string> FieldsToInclude { get; }
         void DisplayLists(IEnumerable<List> lists);
         event EventHandler ListItemCheckedChanged;
         event EventHandler ImportCardsButtonWasClicked;
