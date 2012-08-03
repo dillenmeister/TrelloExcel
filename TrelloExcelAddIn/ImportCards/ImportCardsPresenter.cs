@@ -149,6 +149,17 @@ namespace TrelloExcelAddIn
         private void SetupMessageEventHandlers()
         {
             messageBus.Subscribe<TrelloWasAuthorizedEvent>(_ => FetchAndDisplayBoards());
+            messageBus.Subscribe<TrelloWasUnauthorizedEvent>(_ => HandleTrelloWasUnauthorized());
+        }
+
+        private void HandleTrelloWasUnauthorized()
+        {
+            view.EnableSelectionOfLists = false;
+            view.EnableSelectionOfBoards = false;
+            view.EnableImport = false;
+            view.DisplayBoards(Enumerable.Empty<BoardViewModel>());
+            view.DisplayLists(Enumerable.Empty<List>());
+            view.ShowStatusMessage("");
         }
 
         private void FetchAndDisplayBoards()
@@ -169,18 +180,11 @@ namespace TrelloExcelAddIn
         }
 
         private void HandleException(AggregateException exception)
-        {
-            view.EnableSelectionOfLists = false;
-            view.EnableSelectionOfBoards = false;
-            view.DisplayBoards(Enumerable.Empty<BoardViewModel>());
-            view.DisplayLists(Enumerable.Empty<List>());
-
+        {          
             if (exception.InnerException is TrelloUnauthorizedException)
                 messageBus.Publish(new TrelloWasUnauthorizedEvent(exception.InnerException.Message));
             else
                 view.ShowErrorMessage(exception.InnerException.Message);
-
-            view.ShowStatusMessage("");
         }
     }
 }
