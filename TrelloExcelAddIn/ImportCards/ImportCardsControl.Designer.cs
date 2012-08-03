@@ -53,9 +53,9 @@
             this.ChooseListsGroupBox.Controls.Add(this.ListsBox);
             this.ChooseListsGroupBox.Controls.Add(this.BoardsLabel);
             this.ChooseListsGroupBox.Controls.Add(this.BoardComboBox);
-            this.ChooseListsGroupBox.Location = new System.Drawing.Point(5, 189);
+            this.ChooseListsGroupBox.Location = new System.Drawing.Point(5, 179);
             this.ChooseListsGroupBox.Name = "ChooseListsGroupBox";
-            this.ChooseListsGroupBox.Size = new System.Drawing.Size(256, 214);
+            this.ChooseListsGroupBox.Size = new System.Drawing.Size(256, 220);
             this.ChooseListsGroupBox.TabIndex = 0;
             this.ChooseListsGroupBox.TabStop = false;
             this.ChooseListsGroupBox.Text = "3. Choose from which board and lists to import";
@@ -145,7 +145,7 @@
             this.groupBox2.Controls.Add(this.FieldsToIncludeListBox);
             this.groupBox2.Location = new System.Drawing.Point(5, 72);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(256, 111);
+            this.groupBox2.Size = new System.Drawing.Size(256, 101);
             this.groupBox2.TabIndex = 15;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "2. Choose which fields to include";
@@ -169,7 +169,7 @@
             "Name",
             "Description",
             "Due Date",
-            "List Name"});
+            "List"});
             this.FieldsToIncludeListBox.Location = new System.Drawing.Point(44, 23);
             this.FieldsToIncludeListBox.Name = "FieldsToIncludeListBox";
             this.FieldsToIncludeListBox.Size = new System.Drawing.Size(194, 77);
