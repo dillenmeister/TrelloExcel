@@ -1,17 +1,15 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Security;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TrelloExcelAddIn")]
+[assembly: AssemblyTitle("TrelloExcel")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Active Solution AB")]
-[assembly: AssemblyProduct("TrelloExcelAddIn")]
-[assembly: AssemblyCopyright("Copyright © Active Solution AB 2012")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("TrelloExcel")]
+[assembly: AssemblyCopyright("Copyright © Oskar Dillén 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -22,6 +20,7 @@ using System.Security;
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("2d6149a4-455f-4ed3-a1a8-26753bea1c28")]
+
 
 // Version information for an assembly consists of the following four values:
 //
